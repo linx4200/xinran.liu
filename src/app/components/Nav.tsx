@@ -13,10 +13,10 @@ const pages = [
     name: 'Projects',
     route: '/projects'
   },
-  {
-    name: 'Blog',
-    route: '/blog'
-  },
+  // {
+  //   name: 'Blog',
+  //   route: '/blog'
+  // },
   {
     name: 'Contact',
     route: '/contact'
