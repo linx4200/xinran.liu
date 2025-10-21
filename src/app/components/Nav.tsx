@@ -26,12 +26,12 @@ const pages = [
 const Nav = () => {
   const pathname = usePathname();
   return (
-    <nav className='flex justify-between h-15 text-base/15  text-center'>
-      <div className='w-50 text-pink-600 font-bold text-2xl/15'>Xinran Liu</div>
-      <ul className='flex w-2xl'>
+    <nav className='flex w-full h-15 text-base/15 justify-between'>
+      <div className='w-50 text-primary text-left font-bold text-2xl/15'>Xinran Liu</div>
+      <ul className='flex w-2xl text-right'>
         {
           pages.map(page => (
-            <li key={page.name} className={`flex-1 ${pathname === page.route && 'text-pink-600'}`}>
+            <li key={page.name} className={`flex-1 ${pathname === page.route && 'text-primary'}`}>
               <Link href={page.route}>{page.name}</Link>
             </li>
           ))

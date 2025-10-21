@@ -1,11 +1,16 @@
 const Footer = () => {
   const year = 2025;
-  return (<div className="flex flex-col items-center justify-between gap-4 border-t border-zinc-200/70 py-6 dark:border-zinc-800/80 sm:flex-row">
-<p className="text-xs text-zinc-500 dark:text-zinc-400">
-© {year} Xinran Liu. Built with Next.js, React & Tailwind CSS.
-{/* todo: and love */}
-</p>
-</div>);
-};
+  return (
+    <footer className="
+      w-full
+      border-t border-zinc-200/70 dark:border-zinc-800/80
+      sm:flex-row"
+    >
+      <p className="text-xs text-stone-400 dark:text-zinc-400 my-4">
+        © {year} Xinran Liu. Built with Next.js, React, Tailwind CSS & <span className="text-base">♥</span>.
+      </p>
+    </footer>
+  );
+  };
 
 export default Footer;

@@ -28,12 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-5xl mx-auto`}
       >
-        {/* Layout UI */}
-        {/* Place children where you want to render a page or nested layout */}
         <Nav />
-        <main>
+        {/* The height of nav and footer is 15*spacing */}
+        <main className="w-full min-h-[calc(100vh_-_var(--spacing)*30)]">
           {children}
         </main>
         <Footer />
