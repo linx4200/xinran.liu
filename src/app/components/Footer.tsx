@@ -2,7 +2,7 @@ const Footer = () => {
   const year = 2025;
   return (
     <footer className="
-      w-full
+      w-full mt-20
       border-t border-zinc-200/70 dark:border-zinc-800/80
       sm:flex-row"
     >

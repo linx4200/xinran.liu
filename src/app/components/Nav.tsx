@@ -18,9 +18,11 @@ const pages = [
   //   route: '/blog'
   // },
   {
-    name: 'Contact',
+    // todo: 高亮
+    name: 'Hire Me',
     route: '/contact'
   }
+  // todo: 留言板
 ];
 
 const Nav = () => {
@@ -28,7 +30,7 @@ const Nav = () => {
   return (
     <nav className='flex w-full h-15 text-base/15 justify-between'>
       <div className='w-50 text-primary text-left font-bold text-2xl/15'>Xinran Liu</div>
-      <ul className='flex w-2xl text-right'>
+      <ul className='flex w-120 text-right'>
         {
           pages.map(page => (
             <li key={page.name} className={`flex-1 ${pathname === page.route && 'text-primary'}`}>

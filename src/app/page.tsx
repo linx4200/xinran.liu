@@ -1,5 +1,6 @@
-import { ProjectCard } from '@/app/components/ProjectCard';
 import Link from 'next/link';
+import { ProjectCard } from '@/app/components/ProjectCard';
+import { SkillSetList } from '@/app/components/SkillSet';
 
 export default function Home() {
   return (
@@ -18,14 +19,27 @@ export default function Home() {
         </div>
       </section>
       <section className="text-center w-full">
-        <h2 className="text-2xl font-bold mb-4">Skills</h2>
-        <ul>
-          <li>React</li>
-        </ul>
+        <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
+        <div className="flex gap-20">
+          <SkillSetList title="Languages" skills={[{
+            name: 'JavaScript(ES6+)',
+            level: 5
+          },
+          {
+            name: 'TypeScript',
+            level: 5
+          },
+          {
+            name: 'HTML & CSS',
+            level: 4
+          }]} />
+          <SkillSetList title="Frameworks & Libraries" />
+          <SkillSetList title="Tools" />
+        </div>
       </section>
       <section className="w-full text-center bg-stone-50 py-10">
         <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-        {/* todo: refine this copy */}
+        {/* todo: refine this copy （或者是留言板的入口） */}
         <p className="text-base text-stone-500 mb-8">If you&#39;re interested in working together or just want<br />to say hello, please reach out!</p>
         <Link className="border-primary border-1 rounded-lg py-2 px-4 text-primary text-base" href="/contact">Contact Me</Link>
       </section>
