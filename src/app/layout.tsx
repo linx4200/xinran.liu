@@ -27,6 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* 试试看: bg-[#F8F7F5] */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-5xl mx-auto`}
       >
