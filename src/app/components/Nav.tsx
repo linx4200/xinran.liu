@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { DarkModeSwitch } from '@/app/components/DarkModeSwitch';
+import { LangSwitch } from '@/app/components/LangSwitch';
 
 {/* todo: 是否有可能就改为自动获取到 page.tsx 文件, 而不用在这里手写 */}
 const pages = [
@@ -18,7 +20,6 @@ const pages = [
   //   route: '/blog'
   // },
   {
-    // todo: 高亮
     name: 'Hire Me',
     route: '/contact'
   }
@@ -28,17 +29,21 @@ const pages = [
 const Nav = () => {
   const pathname = usePathname();
   return (
-    <nav className='flex w-full h-15 text-base/15 justify-between'>
-      <div className='w-50 text-primary text-left font-bold text-2xl/15'>Xinran Liu</div>
-      <ul className='flex w-120 text-right'>
+    // <nav className={`w-full h-15 flex gap-5 text-base/15 items-center ${pathname !== '/' ? 'justify-between' : 'justify-end'}`}>
+    <nav className="w-full h-15 flex gap-5 text-base/15 items-center justify-end">
+      {pathname !== '/' && <div className='flex-1 text-primary text-left font-bold text-2xl/15'>Xinran Liu</div>}
+      <ul className='flex gap-15'>
         {
           pages.map(page => (
-            <li key={page.name} className={`flex-1 ${pathname === page.route && 'text-primary'}`}>
+            <li key={page.name} className={`${pathname === page.route && 'text-primary'}`}>
               <Link href={page.route}>{page.name}</Link>
             </li>
           ))
         }
       </ul>
+      <div className='text-stone-300'>|</div>
+      <DarkModeSwitch />
+      <LangSwitch />
     </nav>
   );
 };
