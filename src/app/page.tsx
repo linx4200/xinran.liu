@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import { ProjectCard } from '@/app/components/ProjectCard';
 import { SkillSetList } from '@/app/components/SkillSet';
+import { SayHi } from '@/app/components/SayHi';
 import { selectedProjects } from '@/app/data/projects';
 
 export default function Home() {
   return (
     <>
       <section className="w-full mt-20 text-center">
-        <h1 className="text-5xl font-bold mb-4">Hi, I&#39;m Xinran Liu.</h1>
+        <h1 className="text-5xl font-bold mb-4"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
         <p className="text-lg text-stone-500">An independent web developer specializing in building fast, modern, <br/>and maintainable web applications.</p>
         {/* todo: developer mode switch */}
       </section>

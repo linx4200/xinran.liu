@@ -8,6 +8,19 @@
 @theme {
   --color-primary: var(--color-rose-400);
   --text-tiny: 0.6rem;
+
+  --animate-wiggle: wiggle 0.75s ease-in-out infinite;
+  @keyframes wiggle {
+    0% {
+      transform: rotate(-10deg) translateX(-150%);
+    }
+    50% {
+      transform: rotate(10deg) translateX(-150%);
+    }
+    100% {
+      transform: rotate(-10deg) translateX(-150%);
+    }
+  }
 }
 
 @theme inline {
