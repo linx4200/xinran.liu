@@ -11,8 +11,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Hi!!! todo",
-  description: "todotodotodotodo",
+  title: "Xinran Liu | Independent Web Developer",
+  description: "Xinran Liu is an independent web developer specializing in building fast, reliable, and scalable web applications using React, Vue, and Next.js. Available for freelance collaborations.",
 };
 
 export default function RootLayout({

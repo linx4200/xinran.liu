@@ -14,6 +14,7 @@ export default function Page({
         <div>
           <h1 className="text-5xl font-bold mb-4">Experienced Web Developer</h1>
           {/* todo: status (free / busy) 状态显示 */}
+          {/* todo: 加上 location */}
           <p className="text-2xl mt-10">
             <span className='size-4 inline-block bg-green-500 rounded-xl mr-4'>{/* status indicator */}</span>
             Available for Freelance Work

@@ -4,7 +4,7 @@ import { faCode, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 const LEVEL_MAX = 5;
 
-type Props = {
+export type Props = {
   title: string,
   skills?: {
     name: string,
@@ -15,6 +15,8 @@ type Props = {
 
 export const SkillSetList = (props: Props) => {
   const { title, skills = [], icon = faCode } = props;
+
+  // todo: hover 显示 level 的解释
 
   const skillItems = skills.map((skill) => (
     <li className="flex gap-3 not-last:mb-4 items-center" key={skill.name}>

@@ -1,7 +1,7 @@
 export const projects = [
   {
     selected: true,
-    title: 'Vue Color Picker',
+    title: 'Vue Color',
     desc: 'A modern collection of Vue color pickers – fast, accessible, and easy to use.',
     tags: ['Vue', 'TypeScript', 'Vite'],
     site: 'https://linx4200.github.io/vue-color/',
@@ -10,17 +10,16 @@ export const projects = [
   {
     selected: true,
     title: 'AfterZzz Alarm',
-    desc: 'A collection of efficient color pickers designed for modern web development.',
-    tags: ['React Native'],
+    desc: 'AfterZzz is a minimalist smart alarm that wakes you up after you actually fall asleep.',
+    tags: ['React Native', 'TypeScript'],
     github: 'https://github.com/linx4200/AfterZzz-Alarm'
   },
   {
     selected: true,
-    title: 'Personal Website',
-    desc: 'A collection of efficient color pickers designed for modern web development.',
-    tags: ['React'],
+    title: 'xinran.liu — Independent Developer Portfolio',
+    desc: 'Designed and developed A personal website that reflects my work and identity as a professional independent web developer.',
+    tags: ['React', 'Tailwind', 'Next.js'],
     github: 'https://github.com/linx4200/xinran.liu',
-    site: 'https://www.google.com'
   },
   {
     title: 'Future',

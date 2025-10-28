@@ -1,42 +1,85 @@
 import Link from 'next/link';
 import { ProjectCard } from '@/app/components/ProjectCard';
-import { SkillSetList } from '@/app/components/SkillSet';
+import { SkillSetList, type Props as SkillSetListProps } from '@/app/components/SkillSet';
 import { SayHi } from '@/app/components/SayHi';
 import { selectedProjects } from '@/app/data/projects';
+import { faWrench, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+
+const skillSets: SkillSetListProps[] = [{
+  title: 'Languages',
+  skills: [
+    {
+      name: 'JavaScript(ES6+)',
+      level: 5
+    },
+    {
+      name: 'TypeScript',
+      level: 5
+    },
+    {
+      name: 'HTML & CSS',
+      level: 4
+    }
+  ]},
+  {
+    title: 'Frameworks & Libraries',
+    icon: faWrench,
+    skills: [
+      {
+        name: 'React',
+        level: 4
+      },
+      {
+        name: 'Vue.js',
+        level: 4
+      },
+      {
+        name: 'Next.js',
+        level: 3
+      },
+      {
+        name: 'Tailwind CSS',
+        level: 4
+      }
+    ]
+  },
+  {
+    title: 'Tools',
+    icon: faScrewdriverWrench,
+    skills: [{
+      name: 'Webpack',
+      level: 3
+    },
+    {
+      name: 'Vite',
+      level: 3
+    }
+    ]
+  }
+];
 
 export default function Home() {
   return (
     <>
       <section className="w-full mt-20 text-center">
         <h1 className="text-5xl font-bold mb-4"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
-        <p className="text-lg text-stone-500">An independent web developer specializing in building fast, modern, <br/>and maintainable web applications.</p>
+        <p className="text-lg text-stone-500">I design and build fast, reliable, <br/>and scalable web applications for modern businesses.</p>
         {/* todo: developer mode switch */}
       </section>
       <section className="w-full mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-4">Selected Projects</h2>
+        <h2 className="text-2xl font-bold mb-4"><Link href="/projects">Selected Projects</Link></h2>
         <div className="flex gap-20">
           {selectedProjects.map(project => (
-            <ProjectCard key={project.title} title={project.title} desc={project.desc} />
+            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} />
           ))}
         </div>
       </section>
       <section className="w-full mt-20 text-center">
         <h2 className="text-2xl font-bold mb-4">Skills & Expertise</h2>
         <div className="flex gap-20">
-          <SkillSetList title="Languages" skills={[{
-            name: 'JavaScript(ES6+)',
-            level: 5
-          },
-          {
-            name: 'TypeScript',
-            level: 5
-          },
-          {
-            name: 'HTML & CSS',
-            level: 4
-          }]} />
-          <SkillSetList title="Frameworks & Libraries" />
-          <SkillSetList title="Tools" />
+          {skillSets.map(skillSet => (
+            <SkillSetList key={skillSet.title} {...skillSet} />
+          ))}
         </div>
       </section>
       <section className="w-full mt-20 text-center bg-stone-50 py-10">

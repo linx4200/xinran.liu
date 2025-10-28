@@ -1,5 +1,5 @@
 const Footer = () => {
-  const year = 2025;
+  const year = (new Date()).getFullYear();
   return (
     <footer className="
       w-full mt-20

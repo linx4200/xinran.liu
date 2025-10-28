@@ -1,4 +1,7 @@
 import { Card } from '@/app/components/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   title: string,
@@ -11,7 +14,7 @@ type Props = {
 export const ProjectCard = (props: Props) => {
   const { title, desc, tags, site, github } = props;
   return (
-    <Card>
+    <Card className="h-fit hover:scale-102 transition-all">
       {/* todo: replace with image */}
       <div className="w-full aspect-square bg-stone-200 rounded-md overflow-hidden">🎨</div>
       <div className="mt-5 text-left">
@@ -24,8 +27,8 @@ export const ProjectCard = (props: Props) => {
         ))}
       </div> }
       { (site || github) && <div className="flex gap-4 mt-3 text-gray-400 justify-end">
-        { site && <a href={site} className="hover:text-gray-700">💻</a>}
-        { github && <a href={github} className="hover:text-gray-700">🔗</a>}
+        { site && <a target='_blank' href={site} className="size-4.5"><FontAwesomeIcon icon={faLink} color='#aaa' /></a>}
+        { github && <a target='_blank' href={github} className="size-4.5"><FontAwesomeIcon icon={faGithub} color='#aaa' /></a>}
       </div>}
     </Card>
   )
