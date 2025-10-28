@@ -39,7 +39,7 @@ const skillSets: SkillSetListProps[] = [{
       },
       {
         name: 'Tailwind CSS',
-        level: 4
+        level: 3
       }
     ]
   },
@@ -48,11 +48,11 @@ const skillSets: SkillSetListProps[] = [{
     icon: faScrewdriverWrench,
     skills: [{
       name: 'Webpack',
-      level: 3
+      level: 4
     },
     {
       name: 'Vite',
-      level: 3
+      level: 4
     }
     ]
   }
