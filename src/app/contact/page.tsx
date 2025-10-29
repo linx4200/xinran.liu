@@ -1,5 +1,7 @@
 import Image from 'next/image';
-import profile from './profile-image.jpg'
+import profile from './profile-image.jpg';
+
+import type { ComponentPropsWithoutRef } from 'react';
 
 export default function Page({
   params,
@@ -8,16 +10,43 @@ export default function Page({
   params: Promise<{ slug: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+  // todo: dynamically change the status
+  const availability: 'free' | 'busy' = 'free';
+
+  const status = availability === 'free'
+    ? {
+        indicatorClass: 'bg-emerald-500',
+        label: 'Free',
+        labelClass: 'text-emerald-600',
+        summary: 'Available for Freelance Work',
+      }
+    : {
+        indicatorClass: 'bg-red-500',
+        label: 'Busy',
+        labelClass: 'text-red-600',
+        summary: 'Currently Booked',
+      };
+
+  const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => (
+    <a
+      href={link} target='_blank'
+      className={`inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out hover:-translate-y-0.5 ${
+        type === 'normal'
+          ? 'border-stone-300 text-stone-700 bg-white hover:border-stone-400 hover:text-stone-900 hover:bg-stone-100'
+          : 'border-transparent bg-primary text-white hover:bg-primary/90'
+      }`}
+    >{text}</a>
+  );
+
   return (
     <>
       <section className="flex justify-between mt-20">
         <div>
           <h1 className="text-5xl font-bold mb-4">Experienced Web Developer</h1>
-          {/* todo: status (free / busy) 状态显示 */}
-          {/* todo: 加上 location */}
+          <p className="text-stone-600">Based in Shenzhen, China</p>
           <p className="text-2xl mt-10">
-            <span className='size-4 inline-block bg-green-500 rounded-xl mr-4'>{/* status indicator */}</span>
-            Available for Freelance Work
+            <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} />
+            {status.summary}
           </p>
         </div>
         <div>
@@ -30,16 +59,16 @@ export default function Page({
         <div className="flex justify-between mt-5 items-center">
           <div>
             <h3 className="font-bold mb-2">Linkedin</h3>
-            <p className="text-stone-600">View my professional experience and network</p>
+            <p className="text-stone-600">View my professional experience and connect with me.</p>
           </div>
-          <a className="border rounded-xl py-1.5 px-6 border-stone-500 text-stone-500">View on LinkedIn</a>
+          <CTAButton text="View on LinkedIn" />
         </div>
         <div className="flex justify-between mt-5 items-center">
           <div>
             <h3 className="font-bold mb-2">Github</h3>
-            <p className="text-stone-600">See my open-source projects and code</p>
+            <p className="text-stone-600">Explore my open-source projects, code, and contributions.</p>
           </div>
-          <a className="border rounded-xl py-1.5 px-6 border-stone-500 text-stone-500">View on GitHub</a>
+          <CTAButton text="View on GitHub" link="https://github.com/linx4200" />
         </div>
       </section>
 
@@ -48,23 +77,23 @@ export default function Page({
         <div className="flex justify-between mt-5 items-center">
           <div>
             <h3 className="font-bold mb-2">Upwork</h3>
-            <p className="text-stone-600">Hire me for freelance projects</p>
+            <p className="text-stone-600">Hire me for freelance web development projects.</p>
           </div>
-          <a className="border rounded-xl py-2 px-5 border-primary text-primary">Hire Me on Upwork</a>
+          <CTAButton text="Hire Me on Upwork" type="primary" />
         </div>
         <div className="flex justify-between mt-5 items-center">
           <div>
-            <h3 className="font-bold mb-2">Fiberr</h3>
-            <p className="text-stone-600">Order ..... ???</p>
+            <h3 className="font-bold mb-2">Fiverr</h3>
+            <p className="text-stone-600">Order custom development services directly through Fiverr.</p>
           </div>
-          <a className="border rounded-xl py-2 px-5 border-primary text-primary">Order on Fiverr</a>
+          <CTAButton text="Hire Me on Fiverr"  type="primary" />
         </div>
         <div className="flex justify-between mt-5 items-center">
           <div>
             <h3 className="font-bold mb-2">Email</h3>
-            <p className="text-stone-600">Lets get in touch directly</p>
+            <p className="text-stone-600">Let’s get in touch directly for collaboration or inquiries.</p>
           </div>
-          <a className="border rounded-xl py-1.5 px-6 border-stone-500 text-stone-500">Send an Email</a>
+          <CTAButton text="Send an Email" />
         </div>
       </section>
     </>
