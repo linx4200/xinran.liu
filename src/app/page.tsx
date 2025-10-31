@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ProjectCard } from '@/app/components/ProjectCard';
 import { SkillSetList, type Props as SkillSetListProps } from '@/app/components/SkillSet';
 import { SayHi } from '@/app/components/SayHi';
+import { Toggle as DeveloperModeToggle } from '@/app/components/developer-mode/Toggle';
 import { selectedProjects } from '@/app/data/projects';
 import { faWrench, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
@@ -64,7 +65,7 @@ export default function Home() {
       <section className="w-full mt-20 text-center">
         <h1 className="text-5xl font-bold mb-4"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
         <p className="text-lg text-stone-500">I design and build fast, reliable, <br/>and scalable web applications for modern businesses.</p>
-        {/* todo: developer mode switch */}
+        <DeveloperModeToggle />
       </section>
       <section className="w-full mt-20 text-center">
         <h2 className="text-2xl font-bold mb-4"><Link href="/projects">Selected Projects</Link></h2>
