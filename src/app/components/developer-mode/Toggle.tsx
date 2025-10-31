@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useDeveloperModeStore } from '@/app/state/useDeveloperModeStore';
 
 export const Toggle = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const isEnabled = useDeveloperModeStore(state => state.isEnabled);
+  const setIsEnabled = useDeveloperModeStore(state => state.toggle);
+  const activeTab = useDeveloperModeStore(state => state.mode);
+  const setActiveTab = useDeveloperModeStore(state => state.updateMode);
+
   const tabs = [
     {
       id: 'react',
@@ -18,9 +22,8 @@ export const Toggle = () => {
       label: 'Next.js',
     },
   ] as const;
-  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]['id'] | undefined>();
 
-  const handleToggle = () => setIsEnabled(current => !current);
+  const handleToggle = () => setIsEnabled();
 
   return (
     <div className={`${isEnabled ? '' : 'pb-15'}`}>
