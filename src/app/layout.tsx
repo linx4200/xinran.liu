@@ -1,7 +1,7 @@
 import { Geist } from "next/font/google";
-import Nav from '@/app/components/Nav';
-import Footer from '@/app/components/Footer';
-import { FloatingToggle as DeveloperModeFloatingToggle } from '@/app/components/developer-mode/FloatingToggle';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import { FloatingToggle as DeveloperModeFloatingToggle } from '@/components/developer-mode/FloatingToggle';
 import "./globals.css";
 
 import type { Metadata } from "next";

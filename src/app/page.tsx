@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { ProjectCard } from '@/app/components/ProjectCard';
-import { SkillSetList, type Props as SkillSetListProps } from '@/app/components/SkillSet';
-import { SayHi } from '@/app/components/SayHi';
-import { Toggle as DeveloperModeToggle } from '@/app/components/developer-mode/Toggle';
-import { selectedProjects } from '@/app/data/projects';
+import { ProjectCard } from '@/components/ProjectCard';
+import { SkillSetList, type Props as SkillSetListProps } from '@/components/SkillSet';
+import { SayHi } from '@/components/SayHi';
+import { Toggle as DeveloperModeToggle } from '@/components/developer-mode/Toggle';
+import { selectedProjects } from '@/data/projects';
 import { faWrench, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
 const skillSets: SkillSetListProps[] = [{

@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { DarkModeSwitch } from '@/app/components/DarkModeSwitch';
-import { LangSwitch } from '@/app/components/LangSwitch';
-import { SayHi } from '@/app/components/SayHi';
+import { DarkModeSwitch } from '@/components/DarkModeSwitch';
+import { LangSwitch } from '@/components/LangSwitch';
+import { SayHi } from '@/components/SayHi';
 
 {/* todo: 是否有可能就改为自动获取到 page.tsx 文件, 而不用在这里手写 */}
 const pages = [
@@ -45,6 +45,7 @@ const Nav = () => {
       <div className='text-stone-300'>|</div>
       <DarkModeSwitch />
       <LangSwitch />
+      {/* todo: Github link */}
     </nav>
   );
 };

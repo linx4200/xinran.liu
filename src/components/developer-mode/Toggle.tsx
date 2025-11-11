@@ -1,6 +1,6 @@
 'use client';
 
-import { useDeveloperModeStore } from '@/app/state/useDeveloperModeStore';
+import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
 export const Toggle = () => {
   const isEnabled = useDeveloperModeStore(state => state.isEnabled);
