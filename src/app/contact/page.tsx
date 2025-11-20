@@ -42,7 +42,7 @@ export default function Page({
     <>
       <section className="flex justify-between mt-20">
         <div>
-          <h1 className="text-5xl font-bold mb-4">Experienced Web Developer</h1>
+          <h1 className="text-5xl font-bold mb-5">Experienced Web Developer</h1>
           <p className="text-stone-600">Based in Shenzhen, China</p>
           <p className="text-2xl mt-10">
             <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} />

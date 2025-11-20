@@ -1,30 +1,37 @@
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { FloatingToggle as DeveloperModeFloatingToggle } from '@/components/developer-mode/FloatingToggle';
-import "./globals.css";
+
+import "@/styles/globals.css";
 
 import type { Metadata } from "next";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Xinran Liu | Independent Web Developer",
   description: "Xinran Liu is an independent web developer specializing in building fast, reliable, and scalable web applications using React, Vue, and Next.js. Available for freelance collaborations.",
 };
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistSans.className} antialiased w-5xl mx-auto`}
+        className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased w-5xl mx-auto`}
       >
         <Nav />
         {/* The height of nav and footer is 15*spacing */}

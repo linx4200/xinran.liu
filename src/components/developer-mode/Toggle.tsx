@@ -26,8 +26,8 @@ export const Toggle = () => {
   const handleToggle = () => setIsEnabled();
 
   return (
-    <div className={`${isEnabled ? '' : 'pb-15'}`}>
-      <div className="mt-5 flex items-center justify-center gap-3">
+    <div className={`${isEnabled ? '' : 'pb-16'}`}>
+      <div className="mt-6 flex items-center justify-center gap-3 dev-mode-container" style={{ "--label": '"mt-5 flex items-center justify-center gap-3"' }}>
         <span className="font-bold">👀&nbsp;&nbsp;&nbsp;Curious how this site is built?</span>
         <button
           type="button"
@@ -44,7 +44,7 @@ export const Toggle = () => {
           </span>
         </button>
       </div>
-      {isEnabled && (<div className="mt-5 h-10">
+      {isEnabled && (<div className="mt-6 h-10">
         <div
           className="inline-flex overflow-hidden rounded-full border border-stone-100 bg-stone-100"
           role="tablist"
