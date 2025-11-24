@@ -63,15 +63,15 @@ export default function Home() {
   return (
     <>
       <section className="w-full mt-20 text-center">
-        <h1 className="text-5xl font-bold pb-1 mb-5 dev-mode-container" style={{ "--label": '"text-5xl font-bold pb-1 mb-3"' }}><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
-        <p className="text-lg text-stone-500 dev-mode-container" style={{ "--label": '"text-lg text-stone-50"' }}>I design and build fast, reliable, <br/>and scalable web applications for modern businesses.</p>
+        <h1 className="text-5xl font-bold pb-1 mb-5" dev-mode="tailwind"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
+        <p className="text-lg text-stone-500" dev-mode="tailwind">I design and build fast, reliable, <br/>and scalable web applications for modern businesses.</p>
         <DeveloperModeToggle />
       </section>
       <section className="w-full mt-20 text-center">
         <h2 className="text-2xl font-bold mb-5"><Link href="/projects">Selected Projects</Link></h2>
-        <div className="flex gap-20 dev-mode-container" style={{ "--label": '"flex gap-20"' }}>
-          {selectedProjects.map(project => (
-            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} />
+        <div className="flex gap-20" dev-mode="tailwind">
+          {selectedProjects.map((project, index) => (
+            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} idx={index} />
           ))}
         </div>
       </section>

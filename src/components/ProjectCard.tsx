@@ -8,13 +8,14 @@ type Props = {
   desc?: string,
   tags?: string[],
   site?: string,
-  github?: string
+  github?: string,
+  idx?: number;
 }
 
 export const ProjectCard = (props: Props) => {
-  const { title, desc, tags, site, github } = props;
+  const { title, desc, tags, site, github, idx } = props;
   return (
-    <Card className="h-fit hover:scale-102 transition-all">
+    <Card className="h-fit hover:scale-102 transition-all" idx={idx}>
       {/* todo: replace with image */}
       <div className="w-full aspect-square bg-stone-200 rounded-md overflow-hidden">🎨</div>
       <div className="mt-5 text-left">
