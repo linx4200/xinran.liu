@@ -10,8 +10,8 @@ export default function Page({
 }) {
   return (
     <div className="mt-20">
-      <h1 className="text-2xl font-bold">Projects</h1>
-      <div className="flex flex-wrap gap-[5%]">
+      <h1 className="text-2xl font-bold" dev-mode="tailwind">Projects</h1>
+      <div className="flex flex-wrap gap-[5%]" dev-mode="tailwind">
         {projects.map(project => (
           <div key={project.title} className="w-[30%] mt-10">
             <ProjectCard {...project} />

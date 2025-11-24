@@ -40,11 +40,11 @@ export default function Page({
 
   return (
     <>
-      <section className="flex justify-between mt-20">
+      <section className="flex justify-between mt-20" dev-mode="tailwind">
         <div>
-          <h1 className="text-5xl font-bold mb-5">Experienced Web Developer</h1>
-          <p className="text-stone-600">Based in Shenzhen, China</p>
-          <p className="text-2xl mt-10">
+          <h1 className="text-5xl font-bold mb-5" dev-mode="tailwind">Experienced Web Developer</h1>
+          <p className="text-stone-600" dev-mode="tailwind">Based in Shenzhen, China</p>
+          <p className="text-2xl mt-10" dev-mode="tailwind">
             <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} />
             {status.summary}
           </p>
@@ -55,43 +55,43 @@ export default function Page({
       </section>
 
       <section className="mt-20">
-        <h2 className="text-2xl pb-5 border-b border-zinc-200/70 font-bold">Professional Background</h2>
-        <div className="flex justify-between mt-5 items-center">
+        <h2 className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Professional Background</h2>
+        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2">Linkedin</h3>
-            <p className="text-stone-600">View my professional experience and connect with me.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">Linkedin</h3>
+            <p className="text-stone-600" dev-mode="tailwind">View my professional experience and connect with me.</p>
           </div>
           <CTAButton text="View on LinkedIn" />
         </div>
-        <div className="flex justify-between mt-5 items-center">
+        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2">Github</h3>
-            <p className="text-stone-600">Explore my open-source projects, code, and contributions.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">Github</h3>
+            <p className="text-stone-600" dev-mode="tailwind">Explore my open-source projects, code, and contributions.</p>
           </div>
           <CTAButton text="View on GitHub" link="https://github.com/linx4200" />
         </div>
       </section>
 
       <section className="mt-20">
-        <h2 className="text-2xl pb-5 border-b border-zinc-200/70 font-bold">Hire Me or Contact Me</h2>
-        <div className="flex justify-between mt-5 items-center">
+        <h2 className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Hire Me or Contact Me</h2>
+        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2">Upwork</h3>
-            <p className="text-stone-600">Hire me for freelance web development projects.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">Upwork</h3>
+            <p className="text-stone-600" dev-mode="tailwind">Hire me for freelance web development projects.</p>
           </div>
           <CTAButton text="Hire Me on Upwork" type="primary" />
         </div>
-        <div className="flex justify-between mt-5 items-center">
+        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2">Fiverr</h3>
-            <p className="text-stone-600">Order custom development services directly through Fiverr.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">Fiverr</h3>
+            <p className="text-stone-600" dev-mode="tailwind">Order custom development services directly through Fiverr.</p>
           </div>
           <CTAButton text="Hire Me on Fiverr"  type="primary" />
         </div>
-        <div className="flex justify-between mt-5 items-center">
+        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2">Email</h3>
-            <p className="text-stone-600">Let’s get in touch directly for collaboration or inquiries.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">Email</h3>
+            <p className="text-stone-600" dev-mode="tailwind">Let’s get in touch directly for collaboration or inquiries.</p>
           </div>
           <CTAButton text="Send an Email" />
         </div>

@@ -26,7 +26,7 @@ export const SkillSetList = (props: Props) => {
   const { title, skills = [], icon = faCode } = props;
 
   const skillItems = skills.map((skill) => (
-    <li className="flex gap-3 not-last:mb-5 items-center group relative" key={skill.name}>
+    <li className="flex gap-3 not-last:mb-5 items-center group relative" key={skill.name} dev-mode="tailwind">
       <span className="size-4 leading-4">
         <FontAwesomeIcon icon={icon} color='#bbb' />
       </span>
@@ -53,7 +53,7 @@ export const SkillSetList = (props: Props) => {
 
   return (
     <Card>
-      <p className="font-semibold mb-5">{title}</p>
+      <p className="font-semibold mb-5" dev-mode="tailwind">{title}</p>
       <ul>
         {skillItems}
       </ul>

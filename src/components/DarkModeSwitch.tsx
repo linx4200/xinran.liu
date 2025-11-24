@@ -52,6 +52,7 @@ export const DarkModeSwitch = () => {
       aria-checked={isDark}
       onClick={toggleTheme}
       className={`size-10 rounded-full p-2 hover:bg-stone-200 cursor-pointer`}
+      dev-mode="tailwind"
     >
       {isDark ? <MoonIcon className="size-6" /> : <SunIcon className="size-6 stroke-stone-800" />}
     </button>

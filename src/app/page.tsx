@@ -68,26 +68,26 @@ export default function Home() {
         <DeveloperModeToggle />
       </section>
       <section className="w-full mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-5"><Link href="/projects">Selected Projects</Link></h2>
+        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
         <div className="flex gap-20" dev-mode="tailwind">
-          {selectedProjects.map((project, index) => (
-            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} idx={index} />
+          {selectedProjects.map((project) => (
+            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} />
           ))}
         </div>
       </section>
       <section className="w-full mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-5">Skills & Expertise</h2>
-        <div className="flex gap-20">
+        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind">Skills & Expertise</h2>
+        <div className="flex gap-20" dev-mode="tailwind">
           {skillSets.map(skillSet => (
             <SkillSetList key={skillSet.title} {...skillSet} />
           ))}
         </div>
       </section>
-      <section className="w-full mt-20 text-center bg-stone-50 py-10">
-        <h2 className="text-2xl font-bold mb-5">Get in Touch</h2>
+      <section className="w-full mt-20 text-center bg-stone-50 py-10" dev-mode="tailwind">
+        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind">Get in Touch</h2>
         {/* todo: refine this copy （或者是留言板的入口） */}
-        <p className="text-base text-stone-500 mb-8">If you&#39;re interested in working together or just want<br />to say hello, please reach out!</p>
-        <Link className="border-primary border-1 rounded-lg py-2 px-4 text-primary text-base" href="/contact">Contact Me</Link>
+        <p className="text-base text-stone-500 mb-8" dev-mode="tailwind">If you&#39;re interested in working together or just want<br />to say hello, please reach out!</p>
+        <Link className="border-primary border-1 border-solid rounded-lg py-2 px-4 text-primary text-base" href="/contact"  dev-mode="tailwind">Contact Me</Link>
       </section>
     </>
   );

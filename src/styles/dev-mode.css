@@ -14,7 +14,7 @@
     @apply dev-mode:hover:before:content-(--label);
 
     &::before {
-      @apply absolute -bottom-4.5 left-[50%] -translate-x-[50%];
+      @apply absolute -bottom-4.5 left-[50%] -translate-x-[50%] z-100;
       @apply font-mono text-sm/tight font-normal bg-black rounded-sm px-1 text-white whitespace-nowrap;
     }
   }

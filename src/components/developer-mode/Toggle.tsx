@@ -27,7 +27,7 @@ export const Toggle = () => {
 
   return (
     <div className={`${isEnabled ? '' : 'pb-16'}`}>
-      <div className="mt-6 flex items-center justify-center gap-3 dev-mode-container" style={{ "--label": '"mt-5 flex items-center justify-center gap-3"' }}>
+      <div className="mt-6 flex items-center justify-center gap-3" dev-mode="tailwind">
         <span className="font-bold">👀&nbsp;&nbsp;&nbsp;Curious how this site is built?</span>
         <button
           type="button"

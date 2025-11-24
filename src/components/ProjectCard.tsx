@@ -9,18 +9,17 @@ type Props = {
   tags?: string[],
   site?: string,
   github?: string,
-  idx?: number;
 }
 
 export const ProjectCard = (props: Props) => {
-  const { title, desc, tags, site, github, idx } = props;
+  const { title, desc, tags, site, github } = props;
   return (
-    <Card className="h-fit hover:scale-102 transition-all" idx={idx}>
+    <Card className="h-fit hover:scale-102 transition-all">
       {/* todo: replace with image */}
       <div className="w-full aspect-square bg-stone-200 rounded-md overflow-hidden">🎨</div>
       <div className="mt-5 text-left">
-        <h3 className="text-base font-semibold mb-1">{title}</h3>
-        { desc && <p className="text-base/normal text-stone-500">{desc}</p> }
+        <h3 className="text-base font-semibold mb-1" dev-mode="tailwind">{title}</h3>
+        { desc && <p className="text-base/normal text-stone-500" dev-mode="tailwind">{desc}</p> }
       </div>
       { tags && <div className="flex flex-wrap gap-2 mt-2">
         {tags.map(tag => (
