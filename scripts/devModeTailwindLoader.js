@@ -8,6 +8,7 @@ const path = require('path');
 // - Supports both string and template literal `className` values (e.g. "foo" or {`foo ${bar}`}).
 // - Leaves tags without className untouched to avoid accidental mutations.
 // - Keeps cacheable and no-ops when no changes are needed.
+
 const tagPattern = /<([A-Za-z][\w.:$-]*)([^>]*?)\sdev-mode=(["'])tailwind\3([^>]*?)>/gs;
 const classStringRegex = /\bclassName=(["'])(.*?)\1/;
 const classTemplateRegex = /\bclassName=\{\s*`([^`]*?)`\s*\}/;
@@ -25,9 +26,9 @@ const transform = (content) =>
     const classValue = stringMatch?.[2] ?? templateMatch?.[1];
     if (!classValue) return match;
 
-    const classWithDev = classValue.includes('dev-mode-container')
+    const classWithDev = classValue.includes('dev-mode-tailwind')
       ? classValue
-      : `${classValue} dev-mode-container`.trim();
+      : `${classValue} dev-mode-tailwind`.trim();
     const classAttr = stringMatch
       ? `className="${classWithDev}"`
       : `className={\`${classWithDev}\`}`;

@@ -1,17 +1,17 @@
 
-@custom-variant dev-mode {
-  &:where([data-dev-mode="on"] *) {
+@custom-variant dev-mode-tw {
+  &:where([data-dev-mode="tailwind"] *) {
     @slot;
   }
 }
 
 @layer components {
-  .dev-mode-container {
+  .dev-mode-tailwind {
     @apply border-1 border-white/0 border-dashed;
 
-    @apply dev-mode:relative dev-mode:hover:border-blue-300;
+    @apply dev-mode-tw:relative dev-mode-tw:hover:border-blue-300;
 
-    @apply dev-mode:hover:before:content-(--label);
+    @apply dev-mode-tw:hover:before:content-(--label);
 
     &::before {
       @apply absolute -bottom-4.5 left-[50%] -translate-x-[50%] z-100;

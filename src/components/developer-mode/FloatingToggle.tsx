@@ -41,8 +41,12 @@ export const FloatingToggle = () => {
   }, [index, setIsEnabled, setMode]);
 
   useEffect(() => {
-    document.querySelector('html')?.setAttribute('data-dev-mode', isEnabled ? 'on' : 'off');
-  }, [isEnabled]);
+    if (typeof mode === 'undefined') {
+      document.querySelector('html')?.removeAttribute('data-dev-mode');
+    } else {
+      document.querySelector('html')?.setAttribute('data-dev-mode', mode);
+    }
+  }, [mode]);
 
   // todo: responsive design: 最宽的时候放在内容的右边，而不是靠屏幕右边
   return (

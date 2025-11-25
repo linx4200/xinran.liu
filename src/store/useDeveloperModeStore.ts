@@ -19,9 +19,10 @@ export const useDeveloperModeStore = create<State & Action>((set) => ({
   toggle: (status?: boolean) => {
     set((state) => {
       const newStatus = typeof status === 'undefined' ? !state.isEnabled : status;
+      const isToggleOn = newStatus === true && state.isEnabled === false;
       return {
         isEnabled: newStatus,
-        mode: newStatus === false ? undefined : state.mode
+        mode: newStatus === false ? undefined : ( isToggleOn ? 'tailwind' : state.mode)
       }
   })},
   updateMode: (mode) => {set(() => ({ mode, isEnabled: typeof mode !== 'undefined' ? true : false }))},
