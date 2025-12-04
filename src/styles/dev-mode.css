@@ -19,3 +19,17 @@
     }
   }
 }
+
+
+@custom-variant dev-mode-react {
+  &:where([data-dev-mode="react"] *) {
+    @slot;
+  }
+}
+
+@layer components {
+  .dev-mode-react-container {
+    @apply border border-white/0 border-dashed;
+    @apply dev-mode-react:hover:border-blue-300;
+  }
+}

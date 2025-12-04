@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { FloatingToggle as DeveloperModeFloatingToggle } from '@/components/developer-mode/FloatingToggle';
+import { Info as DeveloperModePopUpInfo } from '@/components/developer-mode/Info';
 
 import "@/styles/globals.css";
 
@@ -38,8 +39,9 @@ export default function RootLayout({
         <main className="w-full min-h-[calc(100vh_-_var(--spacing)*30)]">
           {children}
         </main>
-        <DeveloperModeFloatingToggle />
         <Footer />
+        <DeveloperModeFloatingToggle />
+        <DeveloperModePopUpInfo />
       </body>
     </html>
   );

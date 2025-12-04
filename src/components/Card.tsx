@@ -1,9 +1,9 @@
 type Props = React.ComponentPropsWithoutRef<'div'>;
 
-export const Card = (props: Props) => {
+export const Card = ({ className, children, ...rest }: Props) => {
   return (
-    <div className={`w-full bg-stone-50 rounded-md p-5 text-left ${props.className ?? ''}`} dev-mode="tailwind">
-      {props.children}
+    <div className={`w-full p-5 bg-stone-50 rounded-md text-left ${className ?? ''}`} {...rest} dev-mode="tailwind">
+      {children}
     </div>
   );
 };

@@ -70,8 +70,8 @@ export default function Home() {
       <section className="w-full mt-20 text-center">
         <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
         <div className="flex gap-20" dev-mode="tailwind">
-          {selectedProjects.map((project) => (
-            <ProjectCard key={project.title} title={project.title} desc={project.desc} github={project.github} />
+          {selectedProjects.map(({ title, desc, github }) => (
+            <ProjectCard key={title} title={title} desc={desc} github={github} />
           ))}
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind">Get in Touch</h2>
         {/* todo: refine this copy （或者是留言板的入口） */}
         <p className="text-base text-stone-500 mb-8" dev-mode="tailwind">If you&#39;re interested in working together or just want<br />to say hello, please reach out!</p>
-        <Link className="border-primary border-1 border-solid rounded-lg py-2 px-4 text-primary text-base" href="/contact"  dev-mode="tailwind">Contact Me</Link>
+        <Link className="border-primary border-1 border-solid rounded-lg py-2 px-4 text-primary text-base" href="/contact" dev-mode="tailwind">Contact Me</Link>
       </section>
     </>
   );

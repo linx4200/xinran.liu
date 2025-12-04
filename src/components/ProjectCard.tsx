@@ -14,9 +14,16 @@ type Props = {
 export const ProjectCard = (props: Props) => {
   const { title, desc, tags, site, github } = props;
   return (
-    <Card className="h-fit hover:scale-102 transition-all">
-      {/* todo: replace with image */}
-      <div className="w-full aspect-square bg-stone-200 rounded-md overflow-hidden">🎨</div>
+    <Card className="group relative h-fit transition-colors duration-200 dev-mode-react-container" data-dev-mode-react-name="ProjectCard" data-dev-mode-react-prop-title="This title" data-dev-mode-react-prop-desc="fjflajfldsajfldsfjlkdsajfldsjfldsjlfjdslfjldsjfldjljlkdasfjldsajfkl">
+      <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.05),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_30%)]" />
+      <div
+        role="img"
+        aria-label={`${title} project preview with vibrant gradient colors`}
+        className="w-full aspect-square rounded-md overflow-hidden"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, #ff7e5f 0%, #feb47b 40%, #6dd5ed 100%)',
+        }}
+      />
       <div className="mt-5 text-left">
         <h3 className="text-base font-semibold mb-1" dev-mode="tailwind">{title}</h3>
         { desc && <p className="text-base/normal text-stone-500" dev-mode="tailwind">{desc}</p> }
