@@ -2,7 +2,7 @@
 
 import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
-export const Toggle = () => {
+export const DevModeToggle = () => {
   const isEnabled = useDeveloperModeStore(state => state.isEnabled);
   const setIsEnabled = useDeveloperModeStore(state => state.toggle);
   const activeTab = useDeveloperModeStore(state => state.mode);
@@ -70,3 +70,5 @@ export const Toggle = () => {
     </div>
   );
 };
+
+export const devModeReact = true;

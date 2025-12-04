@@ -19,3 +19,5 @@ export const SayHi = ({ name }: Props) => {
     </span>
   )
 };
+
+export const devModeReact = true;

@@ -14,7 +14,7 @@ type Props = {
 export const ProjectCard = (props: Props) => {
   const { title, desc, tags, site, github } = props;
   return (
-    <Card className="group relative h-fit transition-colors duration-200 dev-mode-react-container" data-dev-mode-react-name="ProjectCard" data-dev-mode-react-prop-title="This title" data-dev-mode-react-prop-desc="fjflajfldsajfldsfjlkdsajfldsjfldsjlfjdslfjldsjfldjljlkdasfjldsajfkl">
+    <Card className="group relative h-fit transition-colors duration-200">
       <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.05),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_30%)]" />
       <div
         role="img"
@@ -40,3 +40,5 @@ export const ProjectCard = (props: Props) => {
     </Card>
   )
 }
+
+export const devModeReact = true;

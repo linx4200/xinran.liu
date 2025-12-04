@@ -60,3 +60,5 @@ export const SkillSetList = (props: Props) => {
     </Card>
   )
 }
+
+export const devModeReact = true;

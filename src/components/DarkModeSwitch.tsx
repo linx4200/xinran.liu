@@ -71,3 +71,5 @@ const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <path d="M21 12.79A9 9 0 0 1 11.21 3 6.5 6.5 0 1 0 21 12.79Z" />
   </svg>
 );
+
+export const devModeReact = true;

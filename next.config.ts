@@ -7,9 +7,10 @@ const nextConfig: NextConfig = {
       test: /\.(t|j)sx?$/,
       exclude: /node_modules/,
       enforce: "pre",
-      use: {
-        loader: path.resolve(__dirname, "scripts/devModeTailwindLoader.js"),
-      },
+      use: [
+        { loader: path.resolve(__dirname, "scripts/devModeReactLoader.js") },
+        { loader: path.resolve(__dirname, "scripts/devModeTailwindLoader.js") },
+      ],
     });
     return config;
   },

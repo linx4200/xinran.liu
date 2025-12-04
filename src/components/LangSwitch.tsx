@@ -24,3 +24,5 @@ export const LangSwitch = () => {
     </button>
   );
 };
+
+export const devModeReact = true;

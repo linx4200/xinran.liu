@@ -82,7 +82,11 @@ export const Info = () => {
       }}
       ref={selfRef}
     >
-      <div><span className="text-slate-400">&lt;</span><span className="text-rose-700/90 font-bold">{name}</span></div>
+      <div>
+        <span className="text-slate-400">&lt;</span>
+        <span className="text-rose-700/90 font-bold">{name}</span>
+        {!propList || propList.length === 0 && <span className="text-slate-400">&#47;&gt;</span>}
+      </div>
       <div className="text-xs/normal">
         {propList?.map(({key, value}) =>
           <div className="flex" key={key}>
@@ -93,7 +97,7 @@ export const Info = () => {
           </div>
         )}
       </div>
-      <div className="text-slate-400">&#47;&gt;</div>
+      {propList && propList.length > 0 && <div className="text-slate-400">&#47;&gt;</div>}
     </div>
   )
 }
