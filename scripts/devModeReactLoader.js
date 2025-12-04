@@ -6,6 +6,9 @@ const DEV_CLASS = 'dev-mode-react-container';
 const COMPONENT_DIR = path.join(process.cwd(), 'src', 'components') + path.sep;
 
 let parsedTsConfig;
+let cachedHost;
+let cachedProgram;
+const overrideSources = new Map();
 
 // 读取并缓存 tsconfig，缺失或解析失败时使用保守默认值，保证 transformer 能正常工作
 const loadTsConfig = () => {
@@ -24,6 +27,34 @@ const loadTsConfig = () => {
 
   parsedTsConfig = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.dirname(configPath));
   return parsedTsConfig;
+};
+
+// 创建带缓存的 compilerHost：对当前资源文件直接使用 loader 传入的 source，其他文件用文件缓存减少 I/O
+const getCompilerHost = (options) => {
+  if (cachedHost) return cachedHost;
+
+  const defaultHost = ts.createCompilerHost(options);
+  const sourceFileCache = new Map();
+
+  cachedHost = {
+    ...defaultHost,
+    getSourceFile: (fileName, languageVersion, onError, shouldCreateNewSourceFile) => {
+      const normalized = path.resolve(fileName);
+      if (overrideSources.has(normalized)) {
+        return ts.createSourceFile(fileName, overrideSources.get(normalized), languageVersion, true);
+      }
+      if (!shouldCreateNewSourceFile && sourceFileCache.has(normalized)) {
+        return sourceFileCache.get(normalized);
+      }
+      const text = defaultHost.readFile(normalized);
+      if (text === undefined) return undefined;
+      const sf = ts.createSourceFile(fileName, text, languageVersion, true);
+      sourceFileCache.set(normalized, sf);
+      return sf;
+    },
+  };
+
+  return cachedHost;
 };
 
 // 检测文件是否显式导出 devModeReact = true（支持变量导出与 exports 赋值）
@@ -431,12 +462,19 @@ module.exports = function devModeReactLoader(source) {
   this.cacheable?.();
   if (typeof source !== 'string') return source;
 
+  // 早期短路：不含开关定义直接跳过，避免创建 Program
+  if (!source.includes('export const devModeReact')) return source;
+
   const resourcePath = this.resourcePath || '';
   if (!resourcePath.endsWith('.tsx')) return source;
   if (!resourcePath.startsWith(COMPONENT_DIR)) return source;
 
   const tsConfig = loadTsConfig();
-  const program = ts.createProgram([resourcePath], { ...tsConfig.options, noEmit: false, jsx: ts.JsxEmit.Preserve });
+  const options = { ...tsConfig.options, noEmit: false, jsx: ts.JsxEmit.Preserve };
+  const host = getCompilerHost(options);
+  overrideSources.set(path.resolve(resourcePath), source);
+  const program = ts.createProgram([resourcePath], options, host, cachedProgram);
+  cachedProgram = program;
   const checker = program.getTypeChecker();
   const sourceFile = program.getSourceFile(resourcePath);
   if (!sourceFile) return source;
