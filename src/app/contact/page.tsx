@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import profile from './profile-image.jpg';
-
-import type { ComponentPropsWithoutRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 export default function Page({
   params,
@@ -49,8 +49,14 @@ export default function Page({
             {status.summary}
           </p>
         </div>
-        <div>
+        <div className="relative">
           <Image className='rounded-[140px]' src={profile} alt="todo: a11y" width={280} height={280} />
+          <a href='https://www.instagram.com/xinranwhatever' target='_blank' className="
+            absolute right-0 bottom-0 w-[60px] h-[60px] pl-[7.5px] pr-[7.5px] pt-[3.75px] pb-[3.75px]
+            rounded-[30%] bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]
+          ">
+            <FontAwesomeIcon icon={faInstagram} color='white' />
+          </a>
         </div>
       </section>
 
