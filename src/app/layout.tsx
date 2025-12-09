@@ -30,13 +30,15 @@ export default function RootLayout({
 }>) {
 
   return (
+    // todo: lang
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased w-5xl mx-auto`}
       >
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <Nav />
         {/* The height of nav and footer is 15*spacing */}
-        <main className="w-full min-h-[calc(100vh_-_var(--spacing)*30)]">
+        <main id="main-content" className="w-full min-h-[calc(100vh_-_var(--spacing)*30)]" role="main">
           {children}
         </main>
         <Footer />

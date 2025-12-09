@@ -26,19 +26,28 @@ export const SkillSetList = (props: Props) => {
   const { title, skills = [], icon = faCode } = props;
 
   const skillItems = skills.map((skill) => (
-    <li className="flex gap-3 not-last:mb-5 items-center group relative" key={skill.name} dev-mode="tailwind">
+    <li
+      className="flex gap-3 not-last:mb-5 items-center group relative"
+      key={skill.name}
+      aria-label={`${skill.name}, ${LEVEL_EXPLANATION[skill.level]} proficiency, level ${skill.level} of ${LEVEL_MAX}`}
+      dev-mode="tailwind"
+    >
       <span className="size-4 leading-4">
-        <FontAwesomeIcon icon={icon} color='#bbb' />
+        <FontAwesomeIcon icon={icon} color='#bbb' aria-hidden="true" />
       </span>
       <span className='flex-1 text-base/normal'>{skill.name}</span>
       <div className='w-[calc(40px+var(--spacing)*4)]'>
         {
           Array.from({ length: LEVEL_MAX }).map((_, index) => (
             <span key={index}
+              aria-hidden="true"
               className={`inline-block not-last:mr-1 size-[8px] rounded-[8px] ${index < skill.level ? 'bg-primary' : 'bg-stone-200'}`}></span>
           ))
         }
       </div>
+      <span className="sr-only">
+        {`Proficiency level: ${LEVEL_EXPLANATION[skill.level]} (${skill.level} of ${LEVEL_MAX}).`}
+      </span>
       <span className="
         hidden group-hover:block
         absolute right-0 -bottom-5 px-2

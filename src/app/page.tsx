@@ -62,29 +62,29 @@ const skillSets: SkillSetListProps[] = [{
 export default function Home() {
   return (
     <>
-      <section className="w-full mt-20 text-center">
-        <h1 className="text-5xl font-bold pb-1 mb-5" dev-mode="tailwind"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
+      <section className="w-full mt-20 text-center" aria-labelledby="hero-heading">
+        <h1 id="hero-heading" className="text-5xl font-bold pb-1 mb-5" dev-mode="tailwind"><SayHi name="Hi, I&#39;m Xinran Liu" />.</h1>
         <p className="text-lg text-stone-500" dev-mode="tailwind">I design and build fast, reliable, <br/>and scalable web applications for modern businesses.</p>
         <DevModeToggle />
       </section>
-      <section className="w-full mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
-        <div className="flex gap-20" dev-mode="tailwind">
+      <section className="w-full mt-20 text-center" aria-labelledby="selected-projects-heading">
+        <h2 id="selected-projects-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
+        <div className="flex gap-20" role="list" dev-mode="tailwind">
           {selectedProjects.map(({ title, desc, github }) => (
-            <ProjectCard key={title} title={title} desc={desc} github={github} />
+            <ProjectCard key={title} title={title} desc={desc} github={github} role="listitem" />
           ))}
         </div>
       </section>
-      <section className="w-full mt-20 text-center">
-        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind">Skills & Expertise</h2>
+      <section className="w-full mt-20 text-center" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind">Skills & Expertise</h2>
         <div className="flex gap-20" dev-mode="tailwind">
           {skillSets.map(skillSet => (
             <SkillSetList key={skillSet.title} {...skillSet} />
           ))}
         </div>
       </section>
-      <section className="w-full mt-20 text-center bg-stone-50 py-10" dev-mode="tailwind">
-        <h2 className="text-2xl font-bold mb-5" dev-mode="tailwind">Get in Touch</h2>
+      <section className="w-full mt-20 text-center bg-stone-50 py-10" aria-labelledby="contact-heading" dev-mode="tailwind">
+        <h2 id="contact-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind">Get in Touch</h2>
         {/* todo: refine this copy （或者是留言板的入口） */}
         <p className="text-base text-stone-500 mb-8" dev-mode="tailwind">If you&#39;re interested in working together or just want<br />to say hello, please reach out!</p>
         <Link className="border-primary border-1 border-solid rounded-lg py-2 px-4 text-primary text-base" href="/contact" dev-mode="tailwind">Contact Me</Link>

@@ -48,7 +48,7 @@ export const DarkModeSwitch = () => {
     <button
       type="button"
       role="switch"
-      aria-label="Toggle dark mode"
+      aria-label={`Toggle dark mode. Currently ${isDark ? 'dark' : 'light'} mode.`}
       aria-checked={isDark}
       onClick={toggleTheme}
       className={`size-10 rounded-full p-2 hover:bg-stone-200 cursor-pointer`}

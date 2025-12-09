@@ -9,15 +9,15 @@ export default function Page({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   return (
-    <div className="mt-20">
-      <h1 className="text-2xl font-bold" dev-mode="tailwind">Projects</h1>
-      <div className="flex flex-wrap gap-[5%]" dev-mode="tailwind">
+    <section className="mt-20" aria-labelledby="projects-heading">
+      <h1 id="projects-heading" className="text-2xl font-bold" dev-mode="tailwind">Projects</h1>
+      <ul className="flex flex-wrap gap-[5%] list-none p-0" role="list" dev-mode="tailwind">
         {projects.map(project => (
-          <div key={project.title} className="w-[30%] mt-10">
+          <li key={project.title} className="w-[30%] mt-10" role="listitem">
             <ProjectCard {...project} />
-          </div>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 }

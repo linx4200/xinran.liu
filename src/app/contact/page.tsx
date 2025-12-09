@@ -27,31 +27,52 @@ export default function Page({
         summary: 'Currently Booked',
       };
 
-  const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => (
-    <a
-      href={link} target='_blank'
-      className={`inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out hover:-translate-y-0.5 ${
-        type === 'normal'
-          ? 'border-stone-300 text-stone-700 bg-white hover:border-stone-400 hover:text-stone-900 hover:bg-stone-100'
-          : 'border-transparent bg-primary text-white hover:bg-primary/90'
-      }`}
-    >{text}</a>
-  );
+  const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => {
+    const isDisabled = !link;
+    const variantClassName = type === 'normal'
+      ? 'border-stone-300 text-stone-700 bg-white'
+      : 'border-transparent bg-primary text-white';
+    const hoverClassName = isDisabled
+      ? 'cursor-not-allowed opacity-60'
+      : type === 'normal'
+        ? 'hover:-translate-y-0.5 hover:border-stone-400 hover:text-stone-900 hover:bg-stone-100'
+        : 'hover:-translate-y-0.5 hover:bg-primary/90';
+    const sharedClassName = `inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out ${variantClassName} ${hoverClassName}`;
+
+    if (isDisabled) {
+      return (
+        <button type="button" className={sharedClassName} disabled aria-disabled>
+          {text}
+        </button>
+      );
+    }
+
+    return (
+      <a
+        href={link}
+        target='_blank'
+        rel="noreferrer noopener"
+        className={sharedClassName}
+      >
+        {text}
+      </a>
+    );
+  };
 
   return (
     <>
-      <section className="flex justify-between mt-20" dev-mode="tailwind">
+      <section className="flex justify-between mt-20" aria-labelledby="contact-hero-heading" dev-mode="tailwind">
         <div>
-          <h1 className="text-5xl font-bold mb-5" dev-mode="tailwind">Experienced Web Developer</h1>
+          <h1 id="contact-hero-heading" className="text-5xl font-bold mb-5" dev-mode="tailwind">Experienced Web Developer</h1>
           <p className="text-stone-600" dev-mode="tailwind">Based in Shenzhen, China</p>
-          <p className="text-2xl mt-10" dev-mode="tailwind">
-            <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} />
+          <p className="text-2xl mt-10" role="status" aria-live="polite" dev-mode="tailwind">
+            <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} aria-hidden="true" />
             {status.summary}
           </p>
         </div>
         <div className="relative">
-          <Image className='rounded-[140px]' src={profile} alt="todo: a11y" width={280} height={280} />
-          <a href='https://www.instagram.com/xinranwhatever' target='_blank' className="
+          <Image className='rounded-[140px]' src={profile} alt="Portrait of Xinran Liu" width={280} height={280} />
+          <a href='https://www.instagram.com/xinranwhatever' target='_blank' rel="noreferrer noopener" aria-label="Visit Xinran Liu on Instagram" className="
             absolute right-0 bottom-0 w-[60px] h-[60px] pl-[7.5px] pr-[7.5px] pt-[3.75px] pb-[3.75px]
             rounded-[30%] bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]
           ">
@@ -60,8 +81,8 @@ export default function Page({
         </div>
       </section>
 
-      <section className="mt-20">
-        <h2 className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Professional Background</h2>
+      <section className="mt-20" aria-labelledby="professional-background-heading">
+        <h2 id="professional-background-heading" className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Professional Background</h2>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
             <h3 className="font-bold mb-2" dev-mode="tailwind">Linkedin</h3>
@@ -78,8 +99,8 @@ export default function Page({
         </div>
       </section>
 
-      <section className="mt-20">
-        <h2 className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Hire Me or Contact Me</h2>
+      <section className="mt-20" aria-labelledby="hire-contact-heading">
+        <h2 id="hire-contact-heading" className="text-2xl pb-5 border-b border-b-zinc-200/70 border-solid font-bold">Hire Me or Contact Me</h2>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
             <h3 className="font-bold mb-2" dev-mode="tailwind">Upwork</h3>

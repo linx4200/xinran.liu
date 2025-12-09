@@ -16,8 +16,11 @@ export const LangSwitch = () => {
 
   return (
     <button
+      type="button"
       className="relative size-10 text-xs/4 text-stone-800 rounded-full hover:bg-stone-200 cursor-pointer"
       onClick={toggleLang}
+      aria-label={`Toggle language. Current language: ${lang === 'en' ? 'English' : 'Chinese'}.`}
+      aria-pressed={lang === 'zh-CN'}
     >
       <span className={`absolute text-tiny ${lang === 'en' ? selectedStyle : normalStyle}`}>EN</span>
       <span className={`absolute ${lang === 'zh-CN' ? selectedStyle : normalStyle}`}>中</span>
