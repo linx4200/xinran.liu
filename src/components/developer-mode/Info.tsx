@@ -88,7 +88,7 @@ export const Info = () => {
         {!propList || propList.length === 0 && <span className="text-slate-400">&#47;&gt;</span>}
       </div>
       <div className="text-xs/normal">
-        {propList?.map(({key, value}) =>
+        {propList?.map(({ key, value }) =>
           <div className="flex" key={key}>
             <span className="text-sky-600 indent-4">{key}</span>
             <span className="text-slate-400">=</span>

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "Xinran Liu is an independent web developer specializing in building fast, reliable, and scalable web applications using React, Vue, and Next.js. Available for freelance collaborations.",
 };
 
+
+// todo: 这个字体的 variable 一定要是这样的吗
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

@@ -54,10 +54,13 @@ export const FloatingToggle = () => {
       <button
         type="button"
         className="
-          flex items-center gap-2 rounded-full border border-stone-200/80 bg-white/70 px-3.5 py-2 text-sm font-medium text-stone-700
+          flex items-center gap-2 rounded-full px-3.5 py-2
+          border border-stone-200/80 dark:border-stone-700/80 dark:bg-stone-800/70
+          hover:border-stone-300 dark:hover:border-stone-600 dark:hover:bg-stone-800/85
+          text-sm font-medium text-stone-700 dark:text-stone-300
+          hover:text-stone-900 dark:hover:text-stone-100
           cursor-pointer
           transition-all duration-200 ease-out backdrop-blur-sm shadow-sm
-          hover:border-stone-300 hover:bg-white/85 hover:text-stone-900
         "
         onClick={handleClick}
         aria-label={`Switch to ${nextLabel}`}

@@ -8,23 +8,20 @@ const applyTheme = (theme: Theme) => {
   const root = document.documentElement;
   root.classList.toggle('dark', theme === 'dark');
   root.classList.toggle('light', theme === 'light');
-  root.style.setProperty('--background', theme === 'dark' ? '#0a0a0a' : '#ffffff');
-  root.style.setProperty('--foreground', theme === 'dark' ? '#ededed' : '#171717');
 };
 
 export const DarkModeSwitch = () => {
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDark = mediaQuery.matches;
     const initialTheme = (prefersDark ? 'dark' : 'light');
 
     applyTheme(initialTheme);
     setTheme(initialTheme);
 
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const syncWithSystem = (event: MediaQueryListEvent) => {
-
       const nextTheme: Theme = event.matches ? 'dark' : 'light';
       applyTheme(nextTheme);
       setTheme(nextTheme);
@@ -51,10 +48,10 @@ export const DarkModeSwitch = () => {
       aria-label={`Toggle dark mode. Currently ${isDark ? 'dark' : 'light'} mode.`}
       aria-checked={isDark}
       onClick={toggleTheme}
-      className={`size-10 rounded-full p-2 hover:bg-stone-200 cursor-pointer`}
+      className={`size-10 rounded-full p-2 hover:bg-surface-strong cursor-pointer`}
       dev-mode="tailwind"
     >
-      {isDark ? <MoonIcon className="size-6" /> : <SunIcon className="size-6 stroke-stone-800" />}
+      {isDark ? <MoonIcon className="size-6" /> : <SunIcon className="size-6" />}
     </button>
   );
 };
@@ -67,8 +64,10 @@ const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M21 12.79A9 9 0 0 1 11.21 3 6.5 6.5 0 1 0 21 12.79Z" />
+  <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <g transform="translate(-4 1)">
+      <path d="M21 12.79A9 9 0 0 1 11.21 3 6.5 6.5 0 1 0 21 12.79Z" />
+    </g>
   </svg>
 );
 

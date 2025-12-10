@@ -35,7 +35,7 @@ export const DevModeToggle = () => {
           aria-label="Toggle developer mode"
           aria-checked={isEnabled}
           onClick={handleToggle}
-          className={`inline-flex h-6 w-10 items-center rounded-full cursor-pointer border transition-colors duration-150 ${isEnabled ? 'bg-primary border-primary' : 'bg-stone-200 border-stone-300'}`}
+          className={`inline-flex h-6 w-10 items-center rounded-full cursor-pointer border transition-colors duration-150 ${isEnabled ? 'bg-primary border-primary' : 'bg-stone-200 border-stone-300 dark:bg-stone-700 dark:border-stone-600'}`}
         >
           <span className="sr-only">Developer mode</span>
           <span
@@ -46,7 +46,7 @@ export const DevModeToggle = () => {
       </div>
       {isEnabled && (<div className="mt-6 h-10">
         <div
-          className="inline-flex overflow-hidden rounded-full border border-stone-100 bg-stone-100"
+          className="inline-flex overflow-hidden rounded-full border border-stone-100 bg-stone-100 dark:border-stone-800 dark:bg-stone-800"
           role="tablist"
           aria-label="Developer stack"
         >
@@ -59,7 +59,7 @@ export const DevModeToggle = () => {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-1 text-sm transition-colors duration-150 ${isActive ? 'bg-white text-stone-900' : 'text-stone-500 hover:bg-white/60 hover:text-stone-800 hover:cursor-pointer'}`}
+                className={`px-4 py-1 text-sm transition-colors duration-150 ${isActive ? 'bg-white text-stone-900 dark:bg-stone-700 dark:text-stone-100' : 'text-stone-500 hover:bg-white/60 hover:text-stone-800 dark:text-stone-400 dark:hover:bg-stone-700/60 dark:hover:text-stone-200 hover:cursor-pointer'}`}
               >
                 {tab.label}
               </button>

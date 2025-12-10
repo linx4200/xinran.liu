@@ -33,7 +33,7 @@ export const SkillSetList = (props: Props) => {
       dev-mode="tailwind"
     >
       <span className="size-4 leading-4">
-        <FontAwesomeIcon icon={icon} color='#bbb' aria-hidden="true" />
+        <FontAwesomeIcon icon={icon} color='var(--color-stone-300)' aria-hidden="true" />
       </span>
       <span className='flex-1 text-base/normal'>{skill.name}</span>
       <div className='w-[calc(40px+var(--spacing)*4)]'>
@@ -41,7 +41,7 @@ export const SkillSetList = (props: Props) => {
           Array.from({ length: LEVEL_MAX }).map((_, index) => (
             <span key={index}
               aria-hidden="true"
-              className={`inline-block not-last:mr-1 size-[8px] rounded-[8px] ${index < skill.level ? 'bg-primary' : 'bg-stone-200'}`}></span>
+              className={`inline-block not-last:mr-1 size-[8px] rounded-[8px] ${index < skill.level ? 'bg-primary' : 'bg-surface-strong'}`}></span>
           ))
         }
       </div>
@@ -52,10 +52,11 @@ export const SkillSetList = (props: Props) => {
         hidden group-hover:block
         absolute right-0 -bottom-5 px-2
         rounded-sm text-xs/normal
-        bg-gray-700/75 text-amber-50
+        text-white dark:text-text
+        bg-border/75
         after:absolute after:-top-[8px] after:right-[8px]
         after:border-4 after:size-0
-      after:border-b-gray-700/75 after:border-transparent
+      after:border-b-border/75 after:border-transparent
         ">{LEVEL_EXPLANATION[skill.level]}</span>
     </li>
   ));
