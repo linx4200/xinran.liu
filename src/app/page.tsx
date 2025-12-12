@@ -1,64 +1,9 @@
 import Link from 'next/link';
 
-import { SkillSetList, type Props as SkillSetListProps } from '@/components/SkillSet';
 import { SayHi } from '@/components/SayHi';
 import { DevModeToggle } from '@/components/developer-mode/Toggle';
 import { SelectedProjectsList } from '@/components/SelectedProjectsList';
-import { faWrench, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
-
-const skillSets: SkillSetListProps[] = [{
-  title: 'Languages',
-  skills: [
-    {
-      name: 'JavaScript(ES6+)',
-      level: 5
-    },
-    {
-      name: 'TypeScript',
-      level: 5
-    },
-    {
-      name: 'HTML & CSS',
-      level: 4
-    }
-  ]
-},
-{
-  title: 'Frameworks & Libraries',
-  icon: faWrench,
-  skills: [
-    {
-      name: 'React',
-      level: 4
-    },
-    {
-      name: 'Vue.js',
-      level: 4
-    },
-    {
-      name: 'Next.js',
-      level: 3
-    },
-    {
-      name: 'Tailwind CSS',
-      level: 3
-    }
-  ]
-},
-{
-  title: 'Tools',
-  icon: faScrewdriverWrench,
-  skills: [{
-    name: 'Webpack',
-    level: 4
-  },
-  {
-    name: 'Vite',
-    level: 4
-  }
-  ]
-}
-];
+import { SkillSetList } from '@/components/SkillSetList';
 
 export default function Home() {
   return (
@@ -77,9 +22,7 @@ export default function Home() {
       <section className="w-full mt-20 text-center" aria-labelledby="skills-heading">
         <h2 id="skills-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind">Skills & Expertise</h2>
         <div className="flex gap-20" dev-mode="tailwind">
-          {skillSets.map(skillSet => (
-            <SkillSetList key={skillSet.title} {...skillSet} />
-          ))}
+          <SkillSetList />
         </div>
       </section>
 

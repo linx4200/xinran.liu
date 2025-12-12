@@ -1,6 +1,8 @@
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { useSkillSets } from '@/hooks/useSkillSets';
+
+type Props = ReturnType<typeof useSkillSets>[number];
 
 const LEVEL_MAX = 5;
 
@@ -13,17 +15,8 @@ enum LEVEL_EXPLANATION {
   'Expert' /*: 精通该领域，能设计架构或定义最佳实践 */
 }
 
-export type Props = {
-  title: string,
-  skills?: {
-    name: string,
-    level: 0 | 1 | 2 | 3 | 4 | 5,
-  }[],
-  icon?: IconDefinition
-}
-
-export const SkillSetList = (props: Props) => {
-  const { title, skills = [], icon = faCode } = props;
+export const SkillSet = (props: Props) => {
+  const { title, skills = [], icon } = props;
 
   const skillItems = skills.map((skill) => (
     <li
