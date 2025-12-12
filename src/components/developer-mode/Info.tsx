@@ -9,6 +9,7 @@ export const Info = () => {
   const [propList, setPropList] = useState<({ key: string, value: string }[] | undefined)>();
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const [rerendered, setRerendered] = useState(0);
 
   const selfRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef<HTMLElement | null>(null);
@@ -17,6 +18,7 @@ export const Info = () => {
   const devMode = useDeveloperModeStore(state => state.mode);
 
   useEffect(() => {
+    const forceRerender = () => setRerendered(prev => prev + 1);
     const handleMouseOver = (ev: MouseEvent) => {
 
       const target = ev.target as HTMLElement | null;
@@ -28,6 +30,8 @@ export const Info = () => {
       setPropList(devAttrs.filter(attr => attr.name.startsWith('data-dev-mode-react-prop-')).map(attr => ({ key: attr.name.replace('data-dev-mode-react-prop-', ''), value: attr.value })));
       setName(devAttrs.filter(attr => attr.name === 'data-dev-mode-react-name')[0].value);
       setShow(true);
+      // the state `show` is not necessarily changed, so need to ensure rerender
+      forceRerender();
 
       targetRef.current = target;
 
@@ -70,7 +74,7 @@ export const Info = () => {
     const top = placeAbove ? topSpace + window.scrollY - selfRect.height - 5 : targetRect.bottom + window.scrollY + 5;
 
     setPosition({ top, left });
-  }, [show])
+  }, [show, rerendered])
 
   return (
     <div
