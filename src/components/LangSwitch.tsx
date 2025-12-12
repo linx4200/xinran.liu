@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
-type Lang = 'en' | 'zh-CN';
+import { useLangSettingsStore } from '@/store/useLangSettingsStore';
 
 export const LangSwitch = () => {
 
-  const [lang, setLang] = useState<Lang>('en');
+  const { lang, updateLang: setLang } = useLangSettingsStore();
 
   const toggleLang = () => {
     const newLang = lang === 'en' ? 'zh-CN' : 'en';

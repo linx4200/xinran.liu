@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { ProjectCard } from '@/components/ProjectCard';
+
 import { SkillSetList, type Props as SkillSetListProps } from '@/components/SkillSet';
 import { SayHi } from '@/components/SayHi';
 import { DevModeToggle } from '@/components/developer-mode/Toggle';
-import { selectedProjects } from '@/data/projects';
+import { SelectedProjectsList } from '@/components/SelectedProjectsList';
 import { faWrench, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 
 const skillSets: SkillSetListProps[] = [{
@@ -71,9 +71,7 @@ export default function Home() {
       <section className="w-full mt-20 text-center" aria-labelledby="selected-projects-heading">
         <h2 id="selected-projects-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
         <div className="flex gap-20" role="list" dev-mode="tailwind">
-          {selectedProjects.map(({ title, desc, github }) => (
-            <ProjectCard key={title} title={title} desc={desc} github={github} role="listitem" />
-          ))}
+          <SelectedProjectsList />
         </div>
       </section>
       <section className="w-full mt-20 text-center" aria-labelledby="skills-heading">
