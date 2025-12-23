@@ -1,5 +1,4 @@
-
-'use client';
+'use devModeReact';
 
 import { ProjectCard } from '@/components/ProjectCard';
 import { useProjects } from '@/hooks/useProjects';
@@ -17,4 +16,4 @@ export const ProjectGrid = () => {
   );
 };
 
-export const devModeReact = true;
+ProjectGrid.displayName = 'ProjectGrid';

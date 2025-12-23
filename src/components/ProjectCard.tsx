@@ -1,3 +1,5 @@
+'use devModeReact';
+
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -55,5 +57,4 @@ export const ProjectCard = (props: Props) => {
     </Card>
   )
 }
-
-export const devModeReact = true;
+ProjectCard.displayName = 'ProjectCard';

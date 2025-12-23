@@ -1,3 +1,5 @@
+'use devModeReact';
+
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSkillSets } from '@/hooks/useSkillSets';
@@ -64,4 +66,4 @@ export const SkillSet = (props: Props) => {
   )
 }
 
-export const devModeReact = true;
+SkillSet.displayName = 'SkillSet';

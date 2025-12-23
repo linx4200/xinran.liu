@@ -1,4 +1,5 @@
 'use client';
+'use devModeReact';
 
 import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
@@ -71,4 +72,4 @@ export const DevModeToggle = () => {
   );
 };
 
-export const devModeReact = true;
+DevModeToggle.displayName = 'DevModeToggle';

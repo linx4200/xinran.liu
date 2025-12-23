@@ -1,4 +1,4 @@
-'use client';
+'use devModeReact';
 
 import { useEffect, useState } from 'react';
 
@@ -71,4 +71,4 @@ const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const devModeReact = true;
+DarkModeSwitch.displayName = 'DarkModeSwitch';

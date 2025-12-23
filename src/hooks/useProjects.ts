@@ -1,4 +1,3 @@
-
 import { useLangSettingsStore } from '@/store/useLangSettingsStore';
 import { projects as rawProjects } from '@/data/projects';
 

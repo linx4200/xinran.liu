@@ -22,6 +22,7 @@ export const Info = () => {
     const handleMouseOver = (ev: MouseEvent) => {
 
       const target = ev.target as HTMLElement | null;
+      console.log('====>', target);
       if (!target) return;
 
       const devAttrs = Array.from(target.attributes).filter(attr => attr.name.startsWith('data-dev-mode-react-'));

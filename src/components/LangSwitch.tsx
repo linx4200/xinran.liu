@@ -1,3 +1,5 @@
+'use devModeReact';
+
 import { useLangSettingsStore } from '@/store/useLangSettingsStore';
 
 export const LangSwitch = () => {
@@ -28,4 +30,4 @@ export const LangSwitch = () => {
   );
 };
 
-export const devModeReact = true;
+LangSwitch.displayName = 'LangSwitch';

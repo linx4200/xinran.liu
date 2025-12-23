@@ -1,3 +1,5 @@
+'use devModeReact';
+
 type Props = {
   name: string,
 }
@@ -20,4 +22,4 @@ export const SayHi = ({ name }: Props) => {
   )
 };
 
-export const devModeReact = true;
+SayHi.displayName = 'SayHi';
