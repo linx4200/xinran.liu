@@ -6,7 +6,7 @@ import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 import { LangSwitch } from '@/components/LangSwitch';
 import { SayHi } from '@/components/SayHi';
 
-{/* todo: 是否有可能就改为自动获取到 page.tsx 文件, 而不用在这里手写 */}
+{/* todo: 是否有可能就改为自动获取到 page.tsx 文件, 而不用在这里手写 */ }
 const pages = [
   {
     name: 'Home',
