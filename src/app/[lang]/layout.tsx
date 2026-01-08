@@ -30,9 +30,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-    // todo: lang
+    // todo: lang https://nextjs.org/docs/app/guides/internationalization#static-rendering
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased w-5xl mx-auto`}

@@ -24,7 +24,6 @@ const pages = [
     name: 'Hire Me',
     route: '/contact'
   }
-  // todo: 留言板
 ];
 
 const Nav = () => {

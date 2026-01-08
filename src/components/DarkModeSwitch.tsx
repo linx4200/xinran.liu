@@ -1,3 +1,5 @@
+'use client';
+
 'use devModeReact';
 
 import { useEffect, useState } from 'react';
