@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-@import "./dev-mode.css";
+/* todo: 删除 dev-mode.css */
+/* @import "./dev-mode.css"; */
 
 @import "./theme.css";
 

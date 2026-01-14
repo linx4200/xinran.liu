@@ -4,6 +4,8 @@ import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { useRef } from 'react';
+import { useDevModeReact } from '@/hooks/developer-mode/useDevModeReact';
 
 type Props = {
   title: string,
@@ -16,14 +18,24 @@ type Props = {
 
 export const ProjectCard = (props: Props) => {
   const { title, desc, tags, site, github, role } = props;
+  const ref = useRef<HTMLDivElement | null>(null);
   const safeTitleSlug = title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '') || 'project';
   const titleId = `project-${safeTitleSlug}`;
   const descriptionId = desc ? `${titleId}-description` : undefined;
+
+  useDevModeReact({ ref, displayName: 'ProjectCard' });
+
   return (
-    <Card className="group relative h-fit transition-colors duration-200" role={role ?? 'article'} aria-labelledby={titleId} aria-describedby={descriptionId}>
+    <Card
+      className="group relative h-fit transition-colors duration-200"
+      role={role ?? 'article'}
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      ref={ref}
+    >
       <span className="
         pointer-events-none
         absolute inset-0 opacity-0 group-hover:opacity-100
@@ -57,4 +69,3 @@ export const ProjectCard = (props: Props) => {
     </Card>
   )
 }
-ProjectCard.displayName = 'ProjectCard';

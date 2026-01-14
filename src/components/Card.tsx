@@ -1,4 +1,4 @@
-type Props = React.ComponentPropsWithoutRef<'div'>;
+type Props = React.ComponentPropsWithRef<'div'>;
 
 export const Card = ({ className, children, ...rest }: Props) => {
   return (

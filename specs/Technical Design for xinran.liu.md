@@ -5,7 +5,7 @@
 - [Next.js](https://nextjs.org/): 因为是个人网站的属性，重前端轻后端，重信息展示，且 SEO 非常重要，因此服务器渲染技术十分合适，因此选用 Next.js 框架。
 - Tailwind CSS: 适合样式不复杂，轻量化快速开发的网站。
 - React
-- Zustand
+- Zustand: todo: why zustand? 
 
 ## 概要设计
 
@@ -245,9 +245,9 @@ todo: available 状态
 
 ### 移动端适配
 
-### Develop Mode
+### Developer Mode
 
-另外的文件说明
+详细查看 [Developer Mode 技术方案](./Developer%20Mode.md)
 
 ### Google Calendar 查询
 

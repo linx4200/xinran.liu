@@ -44,7 +44,7 @@ const Nav = () => {
       <div className='text-stone-300' aria-hidden="true">|</div>
       <DarkModeSwitch />
       <LangSwitch />
-      {/* todo: Github link */}
+      {/* todo: Github link， and documentation link */}
     </nav>
   );
 };

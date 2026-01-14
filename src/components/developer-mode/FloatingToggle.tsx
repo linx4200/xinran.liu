@@ -1,13 +1,12 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useDeveloperModeStore, type State as DeveloperState } from '@/store/useDeveloperModeStore';
 
 const STATES = [
   { key: "dev", label: "Developer Mode" },
   { key: "react", label: "React" },
   { key: "tailwind", label: "Tailwind CSS" },
-  { key: "nextjs", label: "Next.js" },
 ] as const;
 
 const storeState2Index = (isEnabled: boolean, mode: DeveloperState['mode']) => {
@@ -39,14 +38,6 @@ export const FloatingToggle = () => {
       setMode(STATES[next].key as Exclude<(typeof STATES)[number]['key'], 'dev'>);
     }
   }, [index, setIsEnabled, setMode]);
-
-  useEffect(() => {
-    if (typeof mode === 'undefined') {
-      document.querySelector('html')?.removeAttribute('data-dev-mode');
-    } else {
-      document.querySelector('html')?.setAttribute('data-dev-mode', mode);
-    }
-  }, [mode]);
 
   // todo: responsive design: 最宽的时候放在内容的右边，而不是靠屏幕右边
   return (

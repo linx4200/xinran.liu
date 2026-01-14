@@ -3,10 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
+import { getInfo as getReactInfo, ReactInfo } from './ReactInfo';
+import { getInfo as getTailwindInfo, TailwindInfo } from './TailwindInfo';
+
 export const Info = () => {
 
-  const [name, setName] = useState('');
-  const [propList, setPropList] = useState<({ key: string, value: string }[] | undefined)>();
+  const [reactInfo, setReactInfo] = useState<ReturnType<typeof getReactInfo>>();
+  const [tailwindInfo, setTailwindInfo] = useState<ReturnType<typeof getTailwindInfo>>();
+
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const [rerendered, setRerendered] = useState(0);
@@ -25,11 +29,9 @@ export const Info = () => {
 
       if (!target) return;
 
-      const devAttrs = Array.from(target.attributes).filter(attr => attr.name.startsWith('data-dev-mode-react-'));
-      if (!devAttrs.length) return;
+      setReactInfo(getReactInfo(target));
+      setTailwindInfo(getTailwindInfo(target));
 
-      setPropList(devAttrs.filter(attr => attr.name.startsWith('data-dev-mode-react-prop-')).map(attr => ({ key: attr.name.replace('data-dev-mode-react-prop-', ''), value: attr.value })));
-      setName(devAttrs.filter(attr => attr.name === 'data-dev-mode-react-name')[0].value);
       setShow(true);
       // the state `show` is not necessarily changed, so need to ensure rerender
       forceRerender();
@@ -49,7 +51,7 @@ export const Info = () => {
       target.removeEventListener('mouseleave', handleMouseLeft);
     }
 
-    if (isDevModeEnabled && devMode === 'react') {
+    if (isDevModeEnabled && devMode === 'react' || devMode === 'tailwind') {
       document.addEventListener('mouseover', handleMouseOver);
     } else {
       document.removeEventListener('mouseover', handleMouseOver);
@@ -87,22 +89,8 @@ export const Info = () => {
       }}
       ref={selfRef}
     >
-      <div>
-        <span className="text-slate-400">&lt;</span>
-        <span className="text-rose-700/90 font-bold">{name}</span>
-        {!propList || propList.length === 0 && <span className="text-slate-400">&#47;&gt;</span>}
-      </div>
-      <div className="text-xs/normal">
-        {propList?.map(({ key, value }) =>
-          <div className="flex" key={key}>
-            <span className="text-sky-600 indent-4">{key}</span>
-            <span className="text-slate-400">=</span>
-            <span className="text-orange-300/80 max-w-[300px] text-ellipsis line-clamp-1">{`"${value}`}</span>
-            <span className="text-orange-300/80">{`"`}</span>
-          </div>
-        )}
-      </div>
-      {propList && propList.length > 0 && <div className="text-slate-400">&#47;&gt;</div>}
+      {reactInfo && <ReactInfo {...reactInfo} />}
+      {tailwindInfo && <TailwindInfo {...tailwindInfo} />}
     </div>
   )
 }
