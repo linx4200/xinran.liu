@@ -235,29 +235,62 @@ https://nextjs.org/docs/app/getting-started/layouts-and-pages#creating-a-nested-
 
 因为网站只设置简体中文和英文两种语言，因此采取简单高效的方式，把需要翻译的字段拆分为两个字段 `{keyName}_en` 和 `{keyName}_zh_CN`。
 
-### Available Time
-
-Google Calendar 查询
-
-todo: available 状态
-
-另外的文件说明
-
 ### 移动端适配
+
+参考：https://tailwindcss.com/docs/responsive-design
+
+// todo: 因为 tailwind 是 mobile first 的原则，因此默认的样式应该是 for 小屏幕，然后通过 prefix 来定义大屏幕的样式。
+
+布局适配：
+
+1. 头部 logo 居中并取消动画；导航栏放置左侧，收起为汉堡菜单；右侧保留 dark mode 和 语言切换 icon。
+2. Hero Section 保持居中布局。
+3. Developer Mode 入口取消，只保留提示“需要切换到电脑端进行操作”。
+4. 标题改为居左显示，卡片垂直排列，一行一个卡片。
+5. Contact Page 的 HeroSection 保持居中布局; 头像： 缩小比例（约为屏幕宽度的 50%-60%），置于顶部居中; "Experienced Web Developer" 居中对齐，字体大小调至 28px-32px; 状态： "Available for Freelance Work" 紧随其后，绿点与文字居中对齐。
+6. Contact Page 的 专业背景与联系板块 (List Sections) 改为:
+- 堆叠布局： 标题和描述占满行宽，按钮放置在下方并变为通栏按钮 (Full-width Button)。这样更易于大拇指点击。
+- 间距优化： 增加列表项之间的内边距（Padding），防止误触。
+- Footer 保持不变
 
 ### Developer Mode
 
 详细查看 [Developer Mode 技术方案](./Developer%20Mode.md)
 
-### Google Calendar 查询
+### Available Time
 
-todo: available 状态
+Contact Page 和 Available Time 功能通过查询个人 Google Calendar 的空闲时间实现。
 
-另外的文件说明
+参考 https://developers.google.com/workspace/calendar/api/quickstart/nodejs 进行实现。
+
+// todo: 注意 credential 文件不能上传到 github
+// todo: 创建公开日历（只允许查看时间，不允许看具体内容，最好具体的项目在子 calendar 中, 用于分享给客户。 然后这里查询的是一个 calendar folder 之类的概念）
 
 ### SEO
 
-注意中英文的抓取
+1. 静态元数据 (首页和 Contact Page)
+
+在 `layout.tsx` 和 各个子页面的 `page.tsx` 中直接导出 metadata 对象(Metadata API)。
+
+https://nextjs.org/docs/app/getting-started/metadata-and-og-images
+
+2. 动态元数据 (Project Page)
+使用 `generateMetadata` 函数(Metadata API)，根据项目内容自动生成标题和描述。
+
+3. 创建 `app/sitemap.ts` 文件
+
+https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generating-a-sitemap-using-code-js-ts
+
+4. 创建 `app/robot.txt` 文件
+
+https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#static-robotstxt
+
+
+todo: Google Search Console：上线后第一件事，就是去 Search Console 提交你的 sitemap.xml，主动告知 Google 你的网站存在。
+
+5. 加入 JSON-LD
+
+在 `app/layout.tsx` 中加入 JSON-LD: https://nextjs.org/docs/app/guides/json-ld
 
 ### A11y
 
@@ -272,10 +305,4 @@ https://nextjs.org/docs/app/guides/analytics
 
 域名，部署，发布
 
-## 后续拓展
-
-数据库
-
-
-
-1
+Vercel 部署

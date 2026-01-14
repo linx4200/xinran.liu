@@ -13,6 +13,7 @@ export default function Page({
   // todo: dynamically change the status
   const availability: 'free' | 'busy' = 'free';
 
+  // todo: 添加下一个 available 的时间，跳转到 google calendar 
   const status = availability === 'free'
     ? {
       indicatorClass: 'bg-emerald-500',
