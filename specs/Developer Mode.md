@@ -36,7 +36,7 @@ start
 :Run `node scripts/generateDevModeReact.mjs`;
 note right
   (预处理阶段)
-  1. 扫描带有 `use devModeReact` 的 .tsx 文件
+  1. 扫描带有 `data-dev-mode-react-name=""` 的 .tsx 文件
   2. 解析 AST 获取组件名称与属性定义
   3. 生成 `src/data/dev-mode-react-components.js` 数据文件
 end note

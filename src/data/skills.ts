@@ -1,9 +1,8 @@
 import { faWrench, faScrewdriverWrench, faCode, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import type { Locale } from "@/app/[lang]/dictionaries";
 
-import { useLangSettingsStore } from '@/store/useLangSettingsStore';
-
-export type SkillSet = {
-  title: { en: string; 'zh-CN': string },
+export interface SkillSet {
+  title: { [key in Locale]: string },
   skills?: {
     name: string,
     level: 0 | 1 | 2 | 3 | 4 | 5,
@@ -11,7 +10,7 @@ export type SkillSet = {
   icon: IconDefinition
 }
 
-const skillSets: SkillSet[] = [{
+export const skillSets: SkillSet[] = [{
   title: { en: 'Languages', 'zh-CN': '编程语言' },
   skills: [
     {
@@ -65,11 +64,3 @@ const skillSets: SkillSet[] = [{
   ]
 }
 ];
-
-export const useSkillSets = () => {
-  const lang = useLangSettingsStore((state) => state.lang);
-  return skillSets.map((skillSet) => ({
-    ...skillSet,
-    title: lang === 'en' ? skillSet.title.en : skillSet.title['zh-CN']
-  }))
-};

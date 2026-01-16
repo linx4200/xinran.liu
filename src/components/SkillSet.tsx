@@ -2,9 +2,7 @@
 
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSkillSets } from '@/hooks/useSkillSets';
-
-type Props = ReturnType<typeof useSkillSets>[number];
+import type { LocalizedSkillSet } from '@/services/skills';
 
 const LEVEL_MAX = 5;
 
@@ -17,7 +15,7 @@ enum LEVEL_EXPLANATION {
   'Expert' /*: 精通该领域，能设计架构或定义最佳实践 */
 }
 
-export const SkillSet = (props: Props) => {
+export const SkillSet = (props: LocalizedSkillSet) => {
   const { title, skills = [], icon } = props;
 
   const skillItems = skills.map((skill) => (

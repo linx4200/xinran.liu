@@ -1,10 +1,9 @@
-"use client";
-
 import { SkillSet } from "./SkillSet";
-import { useSkillSets } from "@/hooks/useSkillSets";
+import { getSkillSets } from "@/services/skills";
+import type { Locale } from "@/dictionaries";
 
-export const SkillSetList = () => {
-  const list = useSkillSets();
+export const SkillSetList = ({ lang }: { lang: Locale }) => {
+  const list = getSkillSets(lang);
   return (
     <>
       {list.map(skillSet => (

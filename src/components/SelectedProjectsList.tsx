@@ -1,10 +1,10 @@
-'use client';
-
 import { ProjectCard } from '@/components/ProjectCard';
-import { useProjects } from '@/hooks/useProjects';
+import { getSelectedProjects } from '@/services/projects';
 
-export const SelectedProjectsList = () => {
-  const { selectedProjects } = useProjects();
+import type { Locale } from '@/app/[lang]/dictionaries';
+
+export const SelectedProjectsList = ({ lang }: { lang: Locale }) => {
+  const selectedProjects = getSelectedProjects(lang);
   return (
     <>
       {selectedProjects.map(({ title, desc, github }) => (

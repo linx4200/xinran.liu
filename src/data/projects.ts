@@ -1,7 +1,9 @@
+import type { Locale } from '@/dictionaries';
+
 export type Project = {
   selected?: boolean;
-  title: { en: string; 'zh-CN': string };
-  desc: { en: string; 'zh-CN': string };
+  title: { [key in Locale]: string };
+  desc: { [key in Locale]: string };
   tags?: string[];
   site?: string;
   github?: string;

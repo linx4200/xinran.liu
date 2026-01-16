@@ -43,7 +43,7 @@ const Nav = () => {
       </ul>
       <div className='text-stone-300' aria-hidden="true">|</div>
       <DarkModeSwitch />
-      <LangSwitch />
+      {/* <LangSwitch /> */}
       {/* todo: Github link， and documentation link */}
     </nav>
   );
