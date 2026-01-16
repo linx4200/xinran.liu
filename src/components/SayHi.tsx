@@ -1,12 +1,10 @@
-'use devModeReact';
-
 type Props = {
   name: string,
 }
 
 export const SayHi = ({ name }: Props) => {
   return (
-    <span className="group relative">
+    <span className="group relative" data-dev-mode-react-name="SayHi">
       {name}
       <span className="
         absolute left-0 top-1/10
@@ -21,5 +19,3 @@ export const SayHi = ({ name }: Props) => {
     </span>
   )
 };
-
-SayHi.displayName = 'SayHi';

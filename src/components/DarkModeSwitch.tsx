@@ -1,7 +1,5 @@
 'use client';
 
-'use devModeReact';
-
 import { useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
@@ -52,6 +50,7 @@ export const DarkModeSwitch = () => {
       onClick={toggleTheme}
       className={`size-10 rounded-full p-2 hover:bg-surface-strong cursor-pointer`}
       dev-mode="tailwind"
+      data-dev-mode-react-name="DarkModeSwitch"
     >
       {isDark ? <MoonIcon className="size-6" /> : <SunIcon className="size-6" />}
     </button>
@@ -72,5 +71,3 @@ const MoonIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 );
-
-DarkModeSwitch.displayName = 'DarkModeSwitch';

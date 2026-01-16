@@ -24,23 +24,12 @@ function getAllTsxFiles(dir) {
   return results;
 }
 
-// Check if file starts with 'use devModeReact'
-function hasUseDevModeReactDirective(sourceFile) {
-  // Check the first few statements for the string literal 'use devModeReact'
-  for (const stmt of sourceFile.statements) {
-    if (ts.isExpressionStatement(stmt) && ts.isStringLiteral(stmt.expression)) {
-      if (stmt.expression.text === 'use devModeReact') {
-        return true;
-      }
-    } else {
-      // If we encounter a non-string-literal expression (and it's not a comment, but AST handles comments differently),
-      // we can stop checking because directives must be at the top.
-      if (!ts.isImportDeclaration(stmt)) {
-        // Directives usually come first.
-      }
-    }
-  }
-  return false;
+// Check if file contains data-dev-mode-react-name attribute
+function hasDevModeAttribute(sourceFile) {
+  // Simple check: iterate statements or just assume yes if string matched?
+  // Let's do a text check on the sourceFile to be consistent with AST availability.
+  // Actually, we can't easily check full text from SourceFile object without referencing `text` property.
+  return sourceFile.text.includes('data-dev-mode-react-name=');
 }
 
 function getComponentInfo(sourceFile, checker) {
@@ -83,25 +72,6 @@ function getComponentInfo(sourceFile, checker) {
 
   if (!componentSymbol || !componentName) {
     console.log(chalk.yellow(`SKIP (Exported component not found)`));
-    return null;
-  }
-
-  // Check for displayName assignment
-  let hasDisplayName = false;
-  for (const stmt of sourceFile.statements) {
-    if (ts.isExpressionStatement(stmt) && ts.isBinaryExpression(stmt.expression)) {
-      const { left, operatorToken } = stmt.expression;
-      if (operatorToken.kind === ts.SyntaxKind.EqualsToken && ts.isPropertyAccessExpression(left)) {
-        if (ts.isIdentifier(left.expression) && left.expression.text === componentName && left.name.text === 'displayName') {
-          hasDisplayName = true;
-          break;
-        }
-      }
-    }
-  }
-
-  if (!hasDisplayName) {
-    console.log(chalk.yellow(`SKIP (Component "${componentName}" missing "displayName" assignment)`));
     return null;
   }
 
@@ -167,13 +137,13 @@ function generate() {
 
   files.forEach(file => {
     const content = fs.readFileSync(file, 'utf-8');
-    if (content.includes('use devModeReact')) {
+    if (content.includes('data-dev-mode-react-name=')) {
       candidateFiles.push(file);
     }
   });
 
   if (!candidateFiles.length) {
-    console.log(chalk.yellow('No files with "use devModeReact" found.'));
+    console.log(chalk.yellow('No files with "data-dev-mode-react-name" attribute found.'));
     fs.writeFileSync(OUTPUT_FILE, 'module.exports = {};');
     return;
   }
@@ -198,8 +168,8 @@ function generate() {
       continue;
     }
 
-    if (!hasUseDevModeReactDirective(sourceFile)) {
-      console.log(chalk.gray('SKIPPED (Directive missing)'));
+    if (!hasDevModeAttribute(sourceFile)) {
+      console.log(chalk.gray('SKIPPED (Attribute missing)'));
       continue;
     }
 

@@ -1,5 +1,3 @@
-'use devModeReact';
-
 import { useLangSettingsStore } from '@/store/useLangSettingsStore';
 
 export const LangSwitch = () => {
@@ -23,11 +21,10 @@ export const LangSwitch = () => {
       onClick={toggleLang}
       aria-label={`Toggle language. Current language: ${lang === 'en' ? 'English' : 'Chinese'}.`}
       aria-pressed={lang === 'zh-CN'}
+      data-dev-mode-react-name="LangSwitch"
     >
       <span className={`absolute size-4 text-tiny ${lang === 'en' ? selectedStyle : normalStyle}`}>EN</span>
       <span className={`absolute size-4 ${lang === 'zh-CN' ? selectedStyle : normalStyle}`}>中</span>
     </button>
   );
 };
-
-LangSwitch.displayName = 'LangSwitch';

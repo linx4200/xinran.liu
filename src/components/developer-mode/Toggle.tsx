@@ -1,5 +1,4 @@
 'use client';
-'use devModeReact';
 
 import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
@@ -28,7 +27,7 @@ export const DevModeToggle = () => {
   const handleToggle = () => setIsEnabled();
 
   return (
-    <div className={`${isEnabled ? '' : 'pb-16'}`}>
+    <div className={`${isEnabled ? '' : 'pb-16'}`} data-dev-mode-react-name="DevModeToggle">
       <div className="mt-6 flex items-center justify-center gap-3" dev-mode="tailwind">
         <span className="font-bold">👀&nbsp;&nbsp;&nbsp;Curious how this site is built?</span>
         <button
@@ -72,5 +71,3 @@ export const DevModeToggle = () => {
     </div>
   );
 };
-
-DevModeToggle.displayName = 'DevModeToggle';

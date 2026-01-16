@@ -1,4 +1,12 @@
 export const data = {
+  "DarkModeSwitch": {
+    "name": "DarkModeSwitch",
+    "propList": []
+  },
+  "LangSwitch": {
+    "name": "LangSwitch",
+    "propList": []
+  },
   "ProjectCard": {
     "name": "ProjectCard",
     "propList": [
@@ -28,6 +36,15 @@ export const data = {
       }
     ]
   },
+  "ProjectGrid": {
+    "name": "ProjectGrid",
+    "propList": [
+      {
+        "key": "lang",
+        "value": "Locale"
+      }
+    ]
+  },
   "SayHi": {
     "name": "SayHi",
     "propList": [
@@ -36,5 +53,13 @@ export const data = {
         "value": "string"
       }
     ]
+  },
+  "SkillSet": {
+    "name": "SkillSet",
+    "propList": []
+  },
+  "DevModeToggle": {
+    "name": "DevModeToggle",
+    "propList": []
   }
 };

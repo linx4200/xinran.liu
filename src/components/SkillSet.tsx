@@ -1,7 +1,6 @@
-'use devModeReact';
-
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import type { LocalizedSkillSet } from '@/services/skills';
 
 const LEVEL_MAX = 5;
@@ -55,7 +54,7 @@ export const SkillSet = (props: LocalizedSkillSet) => {
   ));
 
   return (
-    <Card>
+    <Card data-dev-mode-react-name="SkillSet">
       <p className="font-semibold mb-5" dev-mode="tailwind">{title}</p>
       <ul>
         {skillItems}
@@ -63,5 +62,3 @@ export const SkillSet = (props: LocalizedSkillSet) => {
     </Card>
   )
 }
-
-SkillSet.displayName = 'SkillSet';
