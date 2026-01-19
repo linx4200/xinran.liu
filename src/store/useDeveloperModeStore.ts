@@ -12,6 +12,8 @@ type Action = {
   updateHeroSectionShowStatus: (status: boolean) => void
 }
 
+const DEFAULT_MODE = 'tailwind';
+
 export const useDeveloperModeStore = create<State & Action>((set) => ({
   isEnabled: false,
   mode: undefined,
@@ -22,9 +24,10 @@ export const useDeveloperModeStore = create<State & Action>((set) => ({
       const isToggleOn = newStatus === true && state.isEnabled === false;
       return {
         isEnabled: newStatus,
-        mode: newStatus === false ? undefined : ( isToggleOn ? 'tailwind' : state.mode)
+        mode: newStatus === false ? undefined : (isToggleOn ? DEFAULT_MODE : state.mode)
       }
-  })},
-  updateMode: (mode) => {set(() => ({ mode, isEnabled: typeof mode !== 'undefined' ? true : false }))},
-  updateHeroSectionShowStatus: (isHeroSectionShown) => {set(() => ({ isHeroSectionShown }))},
+    })
+  },
+  updateMode: (mode) => { set(() => ({ mode, isEnabled: typeof mode !== 'undefined' ? true : false })) },
+  updateHeroSectionShowStatus: (isHeroSectionShown) => { set(() => ({ isHeroSectionShown })) },
 }))

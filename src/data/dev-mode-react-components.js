@@ -7,6 +7,10 @@ export const data = {
     "name": "LangSwitch",
     "propList": []
   },
+  "Nav": {
+    "name": "Nav",
+    "propList": []
+  },
   "ProjectCard": {
     "name": "ProjectCard",
     "propList": [

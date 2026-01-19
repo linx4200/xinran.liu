@@ -1,34 +1,7 @@
-@custom-variant dev-mode-tw {
-  &:where([data-dev-mode="tailwind"] *) {
-    @slot;
-  }
-}
-
 @layer components {
-  .dev-mode-tailwind {
-    @apply border-1 border-white/0 border-dashed;
-
-    @apply dev-mode-tw:relative dev-mode-tw:hover:border-blue-300;
-
-    @apply dev-mode-tw:hover:before:content-(--label);
-
-    &::before {
-      @apply absolute -bottom-4.5 left-[50%] -translate-x-[50%] z-100;
-      @apply font-mono text-sm/tight font-normal bg-border rounded-sm px-1 text-white whitespace-nowrap;
-    }
-  }
-}
-
-
-@custom-variant dev-mode-react {
-  &:where([data-dev-mode="react"] *) {
-    @slot;
-  }
-}
-
-@layer components {
-  .dev-mode-react-container {
-    @apply border border-white/0 border-dashed;
-    @apply dev-mode-react:hover:border-blue-300;
+  .dev-mode-container-active {
+    /* 使用 ring-offset-0 确保贴合边缘，ring-1 代表 1px 宽度 */
+    /* 但 box-shadow 原生不支持 dashed（虚线） */
+    @apply ring-1 ring-blue-300 ring-inset;
   }
 }

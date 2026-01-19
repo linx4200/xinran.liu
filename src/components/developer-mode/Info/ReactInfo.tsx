@@ -1,4 +1,6 @@
-type Props = {
+import { data } from "@/data/dev-mode-react-components";
+
+export type Props = {
   name: string;
   propList?: { key: string; value: string }[];
 }
@@ -26,20 +28,22 @@ export const ReactInfo = ({ name, propList }: Props) => {
   )
 }
 
-export const getInfo = (target: HTMLElement) => {
+export const getInfo: (target: HTMLElement | null) => (undefined | { props: Props | undefined, ele: HTMLElement }) = (target) => {
+
+  if (typeof data === 'undefined') return;
+  if (target === null || target.tagName === 'BODY' || target.tagName === 'HTML') return;
 
   const componentNameAttrs = Array.from(target.attributes).filter(attr => attr.name === 'data-dev-mode-react-name');
-  if (!componentNameAttrs.length) return;
+  if (!componentNameAttrs.length) {
+    return getInfo(target.parentElement);
+  };
 
   const componentName = componentNameAttrs[0].value;
 
-  // todo: get props from data file
+  const componentInfo = data[componentName as keyof typeof data];
 
   return {
-    name: componentName,
-    propList: [{
-      key: 'foo',
-      value: 'bar'
-    }]
-  }
+    props: componentInfo,
+    ele: target
+  };
 }

@@ -29,8 +29,12 @@ const pages = [
 const Nav = () => {
   const pathname = usePathname();
   return (
-    // <nav className={`w-full h-15 flex gap-5 text-base/15 items-center ${pathname !== '/' ? 'justify-between' : 'justify-end'}`}>
-    <nav className="w-full h-15 flex gap-5 text-base/15 items-center justify-end" aria-label="Primary" dev-mode="tailwind">
+    <nav
+      className="w-full h-15 flex gap-5 text-base/15 items-center justify-end"
+      aria-label="Primary"
+      dev-mode="tailwind"
+      data-dev-mode-react-name="Nav"
+    >
       {pathname !== '/' && <div className='flex-1 text-primary text-left font-bold text-2xl/15'><SayHi name="Xinran Liu" /></div>}
       <ul className="flex gap-15">
         {

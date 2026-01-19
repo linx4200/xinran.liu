@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useDeveloperModeStore } from '@/store/useDeveloperModeStore';
 
-import { getInfo as getReactInfo, ReactInfo } from './ReactInfo';
-import { getInfo as getTailwindInfo, TailwindInfo } from './TailwindInfo';
+import { getInfo as getReactInfo, ReactInfo, type Props as ReactInfoProps } from './ReactInfo';
+import { getInfo as getTailwindInfo, TailwindInfo, type Props as TailwindInfoProps } from './TailwindInfo';
 
 export const Info = () => {
 
-  const [reactInfo, setReactInfo] = useState<ReturnType<typeof getReactInfo>>();
-  const [tailwindInfo, setTailwindInfo] = useState<ReturnType<typeof getTailwindInfo>>();
+  const [reactInfoProps, setReactInfoProps] = useState<ReactInfoProps | undefined>();
+  const [tailwindInfoProps, setTailwindInfoProps] = useState<TailwindInfoProps | undefined>();
 
   const [show, setShow] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -23,22 +23,42 @@ export const Info = () => {
 
   useEffect(() => {
     const forceRerender = () => setRerendered(prev => prev + 1);
+
     const handleMouseOver = (ev: MouseEvent) => {
 
       const target = ev.target as HTMLElement | null;
-
       if (!target) return;
 
-      setReactInfo(getReactInfo(target));
-      setTailwindInfo(getTailwindInfo(target));
+      let reactInfo;
+      let tailwindInfo;
 
-      setShow(true);
+      if (devMode === 'react') {
+        reactInfo = getReactInfo(target);
+      } else if (devMode === 'tailwind') {
+        tailwindInfo = getTailwindInfo(target);
+      }
+
+      if (typeof reactInfo !== 'undefined') {
+        setReactInfoProps(reactInfo.props);
+        setShow(true);
+        targetRef.current = reactInfo.ele;
+      } else {
+        setReactInfoProps(undefined);
+      }
+
+      if (typeof tailwindInfo !== 'undefined') {
+        setTailwindInfoProps(tailwindInfo.props);
+        setShow(true);
+        targetRef.current = tailwindInfo.ele;
+      } else {
+        setTailwindInfoProps(undefined);
+      }
+
+      targetRef.current?.addEventListener('mouseleave', handleMouseLeft);
+      targetRef.current?.classList.add('dev-mode-container-active');
+
       // the state `show` is not necessarily changed, so need to ensure rerender
       forceRerender();
-
-      targetRef.current = target;
-
-      target.addEventListener('mouseleave', handleMouseLeft);
     };
 
     const handleMouseLeft = (ev: MouseEvent) => {
@@ -48,17 +68,24 @@ export const Info = () => {
       setShow(false);
       targetRef.current = null;
 
+      target.classList.remove('dev-mode-container-active');
       target.removeEventListener('mouseleave', handleMouseLeft);
     }
 
-    if (isDevModeEnabled && devMode === 'react' || devMode === 'tailwind') {
+    const cleanUp = () => {
+      document.removeEventListener('mouseover', handleMouseOver);
+      targetRef.current?.removeEventListener('mouseleave', handleMouseLeft);
+      targetRef.current = null;
+    }
+
+    if (isDevModeEnabled && (devMode === 'react' || devMode === 'tailwind')) {
       document.addEventListener('mouseover', handleMouseOver);
     } else {
-      document.removeEventListener('mouseover', handleMouseOver);
+      cleanUp();
     }
 
     return () => {
-      document.removeEventListener('mouseover', handleMouseOver);
+      cleanUp();
     };
   }, [isDevModeEnabled, devMode]);
 
@@ -73,11 +100,11 @@ export const Info = () => {
     const topSpace = targetRect.top;
     const placeAbove = topSpace >= selfRect.height;
 
-    const left = targetRect.left;
+    const left = targetRect.left + (targetRect.width - selfRect.width) / 2;
     const top = placeAbove ? topSpace + window.scrollY - selfRect.height - 5 : targetRect.bottom + window.scrollY + 5;
 
     setPosition({ top, left });
-  }, [show, rerendered])
+  }, [show, rerendered]);
 
   return (
     <div
@@ -89,8 +116,8 @@ export const Info = () => {
       }}
       ref={selfRef}
     >
-      {reactInfo && <ReactInfo {...reactInfo} />}
-      {tailwindInfo && <TailwindInfo {...tailwindInfo} />}
+      {reactInfoProps && <ReactInfo {...reactInfoProps} />}
+      {tailwindInfoProps && <TailwindInfo {...tailwindInfoProps} />}
     </div>
   )
 }

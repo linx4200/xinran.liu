@@ -89,6 +89,12 @@ stop
     -   **智能定位**: 基于 `getBoundingClientRect` 动态计算浮层坐标，自动判断并调整显示位置（上方/下方），防止溢出屏幕。
     -   **性能优化**: 当 `isDevModeEnabled` 为 `false` 时，自动卸载事件监听器，零运行时开销。
 
+使用 mouseover 是因为相对于 mouseenter, 它是一个冒泡事件，这样可以把事件监听绑定在 document 上，可以有效减少事件监听的数量。
+识别组件的时候，需要递归 target 的父元素，直到找到目标或到头为止。
+使用 moseleave 而不是 mouseout 事件是因为 mouseleave 不冒泡，触发时机只有一个，鼠标离开该目标时。（鼠标进入该目标的子元素不会触发该事件）
+
+同时添加 class 使其显示蓝色虚线边框。
+
 ## 5. 集成指南 (Integration)
 为了确保 Developer Mode 在全站可用，核心组件被集成在根布局中。
 
