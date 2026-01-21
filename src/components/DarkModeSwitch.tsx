@@ -4,29 +4,29 @@ import { useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const prefersDark = mediaQuery.matches;
+const initialTheme = prefersDark ? 'dark' : 'light';
+
 const applyTheme = (theme: Theme) => {
   const root = document.documentElement;
   root.classList.toggle('dark', theme === 'dark');
   root.classList.toggle('light', theme === 'light');
 };
 
+applyTheme(initialTheme);
+
 export const DarkModeSwitch = () => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>(initialTheme);
+
+  const syncWithSystem = (event: MediaQueryListEvent) => {
+    const nextTheme: Theme = event.matches ? 'dark' : 'light';
+    applyTheme(nextTheme);
+    setTheme(nextTheme);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const prefersDark = mediaQuery.matches;
-    const initialTheme = (prefersDark ? 'dark' : 'light');
-
-    applyTheme(initialTheme);
-    setTheme(initialTheme);
-
-    const syncWithSystem = (event: MediaQueryListEvent) => {
-      const nextTheme: Theme = event.matches ? 'dark' : 'light';
-      applyTheme(nextTheme);
-      setTheme(nextTheme);
-    };
-
     mediaQuery.addEventListener('change', syncWithSystem);
     return () => mediaQuery.removeEventListener('change', syncWithSystem);
   }, []);

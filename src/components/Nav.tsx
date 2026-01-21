@@ -1,14 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic'
 import { useParams, usePathname } from 'next/navigation';
-import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 import { LangSwitch } from '@/components/LangSwitch';
 import { SayHi } from '@/components/SayHi';
 
-import { type LangCode } from '@/dictionaries';
+import type { LangCode, Dictionary } from '@/dictionaries';
 
-const Nav = ({ dict }: { dict: any }) => {
+const DarkModeSwitch = dynamic(() => import('@/components/DarkModeSwitch').then((mod) => mod.DarkModeSwitch), { ssr: false });
+
+const Nav = ({ dict }: { dict: Dictionary }) => {
   const params = useParams();
   const lang = params.lang as LangCode;
 

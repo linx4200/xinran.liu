@@ -20,3 +20,5 @@ export const resolveLocale = (locale: string): LangCode => {
 export const getDictionary = async (locale: string) => {
   return dictionaries[resolveLocale(locale)]();
 }
+
+export type Dictionary = Awaited<ReturnType<typeof dictionaries['en']>>;

@@ -4,13 +4,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { getDictionary } from '@/dictionaries';
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: string }>
-}) {
+const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => {
+  const isDisabled = !link;
+  const variantClassName = type === 'normal'
+    ? 'border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-300 bg-white dark:bg-surface-strong'
+    : 'border-transparent bg-primary text-white';
+  const hoverClassName = isDisabled
+    ? 'cursor-not-allowed opacity-60'
+    : type === 'normal'
+      ? 'hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-700'
+      : 'hover:bg-primary/90';
+  const sharedClassName = `inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out ${variantClassName} ${hoverClassName}`;
+
+  if (isDisabled) {
+    return (
+      <button type="button" className={sharedClassName} disabled aria-disabled>
+        {text}
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href={link}
+      target='_blank'
+      rel="noreferrer noopener"
+      className={sharedClassName}
+    >
+      {text}
+    </a>
+  );
+};
+
+export default async function Page({ params }: PageProps<'/[lang]'>) {
   // todo: dynamically change the status
   const availability: 'free' | 'busy' = 'free';
+
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
@@ -28,38 +57,6 @@ export default async function Page({
       labelClass: 'text-red-600',
       summary: dict.contact.status.booked,
     };
-
-  const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => {
-    const isDisabled = !link;
-    const variantClassName = type === 'normal'
-      ? 'border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-300 bg-white dark:bg-surface-strong'
-      : 'border-transparent bg-primary text-white';
-    const hoverClassName = isDisabled
-      ? 'cursor-not-allowed opacity-60'
-      : type === 'normal'
-        ? 'hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-700'
-        : 'hover:bg-primary/90';
-    const sharedClassName = `inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out ${variantClassName} ${hoverClassName}`;
-
-    if (isDisabled) {
-      return (
-        <button type="button" className={sharedClassName} disabled aria-disabled>
-          {text}
-        </button>
-      );
-    }
-
-    return (
-      <a
-        href={link}
-        target='_blank'
-        rel="noreferrer noopener"
-        className={sharedClassName}
-      >
-        {text}
-      </a>
-    );
-  };
 
   return (
     <>
