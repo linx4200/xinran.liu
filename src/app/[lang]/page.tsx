@@ -4,11 +4,9 @@ import { SayHi } from '@/components/SayHi';
 import { DevModeToggle } from '@/components/developer-mode/Toggle';
 import { SelectedProjectsList } from '@/components/SelectedProjectsList';
 import { SkillSetList } from '@/components/SkillSetList';
-import type { Locale } from '@/dictionaries';
 
 export default async function Home({ params }: PageProps<'/[lang]'>) {
   const { lang } = await params;
-  // todo: lang 的类型
   return (
     <>
       <section className="w-full mt-20 text-center" aria-labelledby="hero-heading">
@@ -19,13 +17,13 @@ export default async function Home({ params }: PageProps<'/[lang]'>) {
       <section className="w-full mt-20 text-center" aria-labelledby="selected-projects-heading">
         <h2 id="selected-projects-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind"><Link href="/projects">Selected Projects</Link></h2>
         <div className="flex gap-20" role="list" dev-mode="tailwind">
-          <SelectedProjectsList lang={lang as Locale} />
+          <SelectedProjectsList lang={lang} />
         </div>
       </section>
       <section className="w-full mt-20 text-center" aria-labelledby="skills-heading">
         <h2 id="skills-heading" className="text-2xl font-bold mb-5" dev-mode="tailwind">Skills & Expertise</h2>
         <div className="flex gap-20" dev-mode="tailwind">
-          <SkillSetList lang={lang as Locale} />
+          <SkillSetList lang={lang} />
         </div>
       </section>
 

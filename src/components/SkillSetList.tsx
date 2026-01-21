@@ -1,8 +1,7 @@
 import { SkillSet } from "./SkillSet";
 import { getSkillSets } from "@/services/skills";
-import type { Locale } from "@/dictionaries";
 
-export const SkillSetList = ({ lang }: { lang: Locale }) => {
+export const SkillSetList = ({ lang }: { lang: string }) => {
   const list = getSkillSets(lang);
   return (
     <>

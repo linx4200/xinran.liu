@@ -1,8 +1,8 @@
 import { faWrench, faScrewdriverWrench, faCode, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import type { Locale } from "@/app/[lang]/dictionaries";
+import type { LangCode } from "@/dictionaries";
 
 export interface SkillSet {
-  title: { [key in Locale]: string },
+  title: { [key in LangCode]: string },
   skills?: {
     name: string,
     level: 0 | 1 | 2 | 3 | 4 | 5,
@@ -11,7 +11,7 @@ export interface SkillSet {
 }
 
 export const skillSets: SkillSet[] = [{
-  title: { en: 'Languages', 'zh-CN': '编程语言' },
+  title: { en: 'Languages', zh: '编程语言' },
   skills: [
     {
       name: 'JavaScript(ES6+)',
@@ -29,7 +29,7 @@ export const skillSets: SkillSet[] = [{
   icon: faCode
 },
 {
-  title: { en: 'Frameworks & Libraries', 'zh-CN': '框架与库' },
+  title: { en: 'Frameworks & Libraries', zh: '框架与库' },
   icon: faWrench,
   skills: [
     {
@@ -51,7 +51,7 @@ export const skillSets: SkillSet[] = [{
   ]
 },
 {
-  title: { en: 'Tools', 'zh-CN': '工具' },
+  title: { en: 'Tools', zh: '工具' },
   icon: faScrewdriverWrench,
   skills: [{
     name: 'Webpack',

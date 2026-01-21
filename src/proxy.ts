@@ -1,36 +1,46 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import { supportedLanguages, DEFAULT_LANG } from "./dictionaries";
 
-// todo: 测试非定义的 locale 情况
+// Type guard to check if a string is a supported locale
+function isSupportedLocale(locale: string): locale is typeof supportedLanguages[number] {
+  return (supportedLanguages as readonly string[]).includes(locale);
+}
 
-const locales = ['en', 'en-US', 'zh-CN'];
+// Get user's preferred locale
+function getLocale(request: NextRequest) {
+  const acceptLanguage = request.headers.get('Accept-Language');
+  if (!acceptLanguage) return DEFAULT_LANG;
 
-// Get the preferred locale, similar to the above or using a library
-function getLocale(request: NextRequest) { console.log(request) };
+  // Simple matching logic - can be upgraded to library usage if needed
+  const preferredLocales = acceptLanguage.split(',').map(l => l.split(';')[0].trim());
+
+  for (const locale of preferredLocales) {
+
+    // (简化处理) Check for language code match (e.g. 'en-US' matches 'en')
+    const langCode = locale.split('-')[0];
+    if (isSupportedLocale(langCode)) return langCode;
+  }
+  return DEFAULT_LANG;
+}
 
 export function proxy(request: NextRequest) {
   // Check if there is any supported locale in the pathname
-  const { pathname } = request.nextUrl
-  const pathnameHasLocale = locales.some(
+  const { pathname } = request.nextUrl;
+
+  const pathnameHasLocale = supportedLanguages.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  )
+  );
 
   if (pathnameHasLocale) return;
 
   // Redirect if there is no locale
-  const locale = getLocale(request)
-  request.nextUrl.pathname = `/${locale}${pathname}`
+  const locale = getLocale(request);
 
-  // 1. 判断是否已经是中文路径
-  if (pathname.startsWith('/cn')) return
+  request.nextUrl.pathname = `/${locale}${pathname}`;
 
-  // 2. 如果是英文路径（不带 /cn），则在内部重写到 /en 路径
-  // 这样你代码里依然可以用 [lang] 获取 'en'
-  return NextResponse.rewrite(new URL(`/en${pathname}`, request.url))
-
-  // e.g. incoming request is /products
-  // The new URL is now /en-US/products
-  return NextResponse.redirect(request.nextUrl)
+  // 内部重写到 /{lang} 路径
+  return NextResponse.rewrite(request.nextUrl);
 }
 
 export const config = {

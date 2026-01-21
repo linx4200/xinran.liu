@@ -6,6 +6,7 @@ import { Info as DeveloperModePopUpInfo } from '@/components/developer-mode/Info
 
 import "@/styles/globals.css";
 
+import type { LangCode } from '@/dictionaries';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,14 +26,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+const languages = {
+  en: { htmlLang: 'en' },
+  zh: { htmlLang: 'zh-CN' }, // 内部路由叫 zh, HTML 标记为 zh-CN
+};
+
+export async function generateStaticParams() {
+  return ([{ lang: 'en' }, { lang: 'zh' }])
+};
+
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: LayoutProps<'/[lang]'>) {
+  const { lang } = await params;
+  const displayLang = languages[lang as LangCode].htmlLang;
   return (
-    // todo: lang https://nextjs.org/docs/app/guides/internationalization#static-rendering
-    <html lang="en">
+    <html lang={displayLang}>
       <body
         className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased w-5xl mx-auto`}
       >

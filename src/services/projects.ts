@@ -1,5 +1,5 @@
 import { projects } from '@/data/projects';
-import type { Locale } from '@/dictionaries';
+import { resolveLocale } from '@/dictionaries';
 
 export interface LocalizedProject {
   selected?: boolean;
@@ -10,14 +10,16 @@ export interface LocalizedProject {
   github?: string;
 }
 
-export const getAllProjects = (lang: Locale): LocalizedProject[] => {
+export const getAllProjects = (lang: string): LocalizedProject[] => {
+  const resolvedLang = resolveLocale(lang);
   return projects.map((project) => ({
     ...project,
-    title: project.title[lang],
-    desc: project.desc[lang],
+    title: project.title[resolvedLang],
+    desc: project.desc[resolvedLang],
   }));
 };
 
-export const getSelectedProjects = (lang: Locale): LocalizedProject[] => {
-  return getAllProjects(lang).filter((project) => project.selected);
+export const getSelectedProjects = (lang: string): LocalizedProject[] => {
+  const resolvedLang = resolveLocale(lang)
+  return getAllProjects(resolvedLang).filter((project) => project.selected);
 };
