@@ -8,26 +8,7 @@ import { SayHi } from '@/components/SayHi';
 
 import { type LangCode } from '@/dictionaries';
 
-const pages = [
-  {
-    name: 'Home',
-    route: '/'
-  },
-  {
-    name: 'Projects',
-    route: '/projects'
-  },
-  // {
-  //   name: 'Blog',
-  //   route: '/blog'
-  // },
-  {
-    name: 'Hire Me',
-    route: '/contact'
-  }
-];
-
-const Nav = () => {
+const Nav = ({ dict }: { dict: any }) => {
   const params = useParams();
   const lang = params.lang as LangCode;
 
@@ -40,6 +21,21 @@ const Nav = () => {
     }
     return currentPath === path;
   };
+
+  const pages = [
+    {
+      name: dict.nav.home,
+      route: '/'
+    },
+    {
+      name: dict.nav.projects,
+      route: '/projects'
+    },
+    {
+      name: dict.nav.contact,
+      route: '/contact'
+    }
+  ];
 
   return (
     <nav

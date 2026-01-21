@@ -17,4 +17,6 @@ export const resolveLocale = (locale: string): LangCode => {
   return DEFAULT_LANG
 }
 
-export const getDictionary = async (locale: LangCode) => dictionaries[locale]()
+export const getDictionary = async (locale: string) => {
+  return dictionaries[resolveLocale(locale)]();
+}

@@ -1,4 +1,67 @@
 {
+  "nav": {
+    "home": "首页",
+    "projects": "项目",
+    "contact": "联系我"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi，我是 Xinran Liu",
+      "description": "我设计和构建快速、可靠且可扩展的 Web 应用程序。"
+    },
+    "sections": {
+      "selectedProjects": "精选项目",
+      "skills": "技能与专长",
+      "contact": {
+        "title": "取得联系",
+        "description": "如果您有兴趣合作，或者只是想打个招呼，请随时联系我！",
+        "button": "联系我"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "资深 Web 开发者",
+      "location": "现居中国深圳"
+    },
+    "status": {
+      "free": "空闲",
+      "busy": "忙碌",
+      "available": "可接受自由职业委托",
+      "booked": "当前已排期"
+    },
+    "sections": {
+      "professionalBackground": "专业背景",
+      "hireOrContact": "雇佣或联系我"
+    },
+    "links": {
+      "linkedin": {
+        "title": "Linkedin",
+        "description": "查看我的职业经历并与我建立联系。",
+        "button": "在 LinkedIn 上查看"
+      },
+      "github": {
+        "title": "Github",
+        "description": "探索我的开源项目、代码和贡献。",
+        "button": "在 GitHub 上查看"
+      },
+      "upwork": {
+        "title": "Upwork",
+        "description": "在 Upwork 上雇佣我进行自由职业 Web 开发项目。",
+        "button": "在 Upwork 上雇佣我"
+      },
+      "fiverr": {
+        "title": "Fiverr",
+        "description": "直接通过 Fiverr 订购定制开发服务。",
+        "button": "在 Fiverr 上雇佣我"
+      },
+      "email": {
+        "title": "邮件",
+        "description": "直接联系我进行合作或咨询。",
+        "button": "发送邮件"
+      }
+    }
+  },
   "products": {
     "cart": "加入购物车"
   }

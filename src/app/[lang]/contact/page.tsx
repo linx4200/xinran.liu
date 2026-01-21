@@ -2,30 +2,31 @@ import Image from 'next/image';
 import profile from './profile-image.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { getDictionary } from '@/dictionaries';
 
-export default function Page({
+export default async function Page({
   params,
-  searchParams,
 }: {
-  params: Promise<{ slug: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  params: Promise<{ lang: string }>
 }) {
   // todo: dynamically change the status
   const availability: 'free' | 'busy' = 'free';
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
 
   // todo: 添加下一个 available 的时间，跳转到 google calendar 
   const status = availability === 'free'
     ? {
       indicatorClass: 'bg-emerald-500',
-      label: 'Free',
+      label: dict.contact.status.free,
       labelClass: 'text-emerald-600',
-      summary: 'Available for Freelance Work',
+      summary: dict.contact.status.available,
     }
     : {
       indicatorClass: 'bg-red-500',
-      label: 'Busy',
+      label: dict.contact.status.busy,
       labelClass: 'text-red-600',
-      summary: 'Currently Booked',
+      summary: dict.contact.status.booked,
     };
 
   const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => {
@@ -64,15 +65,15 @@ export default function Page({
     <>
       <section className="flex justify-between mt-20" aria-labelledby="contact-hero-heading" dev-mode="tailwind">
         <div>
-          <h1 id="contact-hero-heading" className="text-5xl font-bold mb-5" dev-mode="tailwind">Experienced Web Developer</h1>
-          <p className="text-text-muted" dev-mode="tailwind">Based in Shenzhen, China</p>
+          <h1 id="contact-hero-heading" className="text-5xl font-bold mb-5" dev-mode="tailwind">{dict.contact.hero.title}</h1>
+          <p className="text-text-muted" dev-mode="tailwind">{dict.contact.hero.location}</p>
           <p className="text-2xl mt-10" role="status" aria-live="polite" dev-mode="tailwind">
             <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} aria-hidden="true" />
             {status.summary}
           </p>
         </div>
         <div className="relative">
-          <Image className='rounded-[140px]' src={profile} alt="Portrait of Xinran Liu" width={280} height={280} />
+          <Image className='rounded-[140px]' src={profile} alt="Portrait of Xinran Liu" />
           <a href='https://www.instagram.com/xinranwhatever' target='_blank' rel="noreferrer noopener" aria-label="Visit Xinran Liu on Instagram" className="
             absolute right-0 bottom-0 w-[60px] h-[60px] pl-[7.5px] pr-[7.5px] pt-[3.75px] pb-[3.75px]
             rounded-[30%] bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]
@@ -83,45 +84,45 @@ export default function Page({
       </section>
 
       <section className="mt-20" aria-labelledby="professional-background-heading">
-        <h2 id="professional-background-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">Professional Background</h2>
+        <h2 id="professional-background-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.professionalBackground}</h2>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">Linkedin</h3>
-            <p className="text-text-muted" dev-mode="tailwind">View my professional experience and connect with me.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.linkedin.title}</h3>
+            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.linkedin.description}</p>
           </div>
-          <CTAButton text="View on LinkedIn" />
+          <CTAButton text={dict.contact.links.linkedin.button} />
         </div>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">Github</h3>
-            <p className="text-text-muted" dev-mode="tailwind">Explore my open-source projects, code, and contributions.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.github.title}</h3>
+            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.github.description}</p>
           </div>
-          <CTAButton text="View on GitHub" link="https://github.com/linx4200" />
+          <CTAButton text={dict.contact.links.github.button} link="https://github.com/linx4200" />
         </div>
       </section>
 
       <section className="mt-20" aria-labelledby="hire-contact-heading">
-        <h2 id="hire-contact-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">Hire Me or Contact Me</h2>
+        <h2 id="hire-contact-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.hireOrContact}</h2>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">Upwork</h3>
-            <p className="text-text-muted" dev-mode="tailwind">Hire me for freelance web development projects.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.upwork.title}</h3>
+            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.upwork.description}</p>
           </div>
-          <CTAButton text="Hire Me on Upwork" type="primary" />
+          <CTAButton text={dict.contact.links.upwork.button} type="primary" />
         </div>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">Fiverr</h3>
-            <p className="text-text-muted" dev-mode="tailwind">Order custom development services directly through Fiverr.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.fiverr.title}</h3>
+            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.fiverr.description}</p>
           </div>
-          <CTAButton text="Hire Me on Fiverr" type="primary" />
+          <CTAButton text={dict.contact.links.fiverr.button} type="primary" />
         </div>
         <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">Email</h3>
-            <p className="text-text-muted" dev-mode="tailwind">Let’s get in touch directly for collaboration or inquiries.</p>
+            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.email.title}</h3>
+            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.email.description}</p>
           </div>
-          <CTAButton text="Send an Email" />
+          <CTAButton text={dict.contact.links.email.button} />
         </div>
       </section>
     </>

@@ -1,4 +1,67 @@
 {
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Hire Me"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm Xinran Liu",
+      "description": "I design and build fast, reliable, and scalable web applications for modern businesses."
+    },
+    "sections": {
+      "selectedProjects": "Selected Projects",
+      "skills": "Skills & Expertise",
+      "contact": {
+        "title": "Get in Touch",
+        "description": "If you're interested in working together or just want to say hello, please reach out!",
+        "button": "Contact Me"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Experienced Web Developer",
+      "location": "Based in Shenzhen, China"
+    },
+    "status": {
+      "free": "Free",
+      "busy": "Busy",
+      "available": "Available for Freelance Work",
+      "booked": "Currently Booked"
+    },
+    "sections": {
+      "professionalBackground": "Professional Background",
+      "hireOrContact": "Hire Me or Contact Me"
+    },
+    "links": {
+      "linkedin": {
+        "title": "Linkedin",
+        "description": "View my professional experience and connect with me.",
+        "button": "View on LinkedIn"
+      },
+      "github": {
+        "title": "Github",
+        "description": "Explore my open-source projects, code, and contributions.",
+        "button": "View on GitHub"
+      },
+      "upwork": {
+        "title": "Upwork",
+        "description": "Hire me for freelance web development projects.",
+        "button": "Hire Me on Upwork"
+      },
+      "fiverr": {
+        "title": "Fiverr",
+        "description": "Order custom development services directly through Fiverr.",
+        "button": "Hire Me on Fiverr"
+      },
+      "email": {
+        "title": "Email",
+        "description": "Let’s get in touch directly for collaboration or inquiries.",
+        "button": "Send an Email"
+      }
+    }
+  },
   "products": {
     "cart": "Add to Cart"
   }
