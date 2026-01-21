@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 import { LangSwitch } from '@/components/LangSwitch';
 import { SayHi } from '@/components/SayHi';
 
-{/* todo: 是否有可能就改为自动获取到 page.tsx 文件, 而不用在这里手写 */ }
+import { type LangCode } from '@/dictionaries';
+
 const pages = [
   {
     name: 'Home',
@@ -27,7 +28,19 @@ const pages = [
 ];
 
 const Nav = () => {
+  const params = useParams();
+  const lang = params.lang as LangCode;
+
   const pathname = usePathname();
+
+  const isCurrentPath = (path: string) => {
+    let currentPath = pathname;
+    if (currentPath.startsWith(`/${lang}`)) {
+      currentPath = currentPath.replace(`/${lang}`, '');
+    }
+    return currentPath === path;
+  };
+
   return (
     <nav
       className="w-full h-15 flex gap-5 text-base/15 items-center justify-end"
@@ -35,14 +48,17 @@ const Nav = () => {
       dev-mode="tailwind"
       data-dev-mode-react-name="Nav"
     >
-      {pathname !== '/' && <div className='flex-1 text-primary text-left font-bold text-2xl/15'><SayHi name="Xinran Liu" /></div>}
+      {!isCurrentPath('/') && <div className='flex-1 text-primary text-left font-bold text-2xl/15'><SayHi name="Xinran Liu" /></div>}
       <ul className="flex gap-15">
         {
-          pages.map(page => (
-            <li key={page.name} className={`${pathname === page.route && 'text-primary'}`}>
-              <Link href={page.route} aria-current={pathname === page.route ? 'page' : undefined}>{page.name}</Link>
-            </li>
-          ))
+          pages.map(page => {
+            const href = `/${lang}${page.route}`;
+            return (
+              <li key={page.name} className={`${isCurrentPath(page.route) && 'text-primary'}`}>
+                <Link href={href} aria-current={isCurrentPath(page.route) ? 'page' : undefined}>{page.name}</Link>
+              </li>
+            )
+          })
         }
       </ul>
       <div className='text-stone-300' aria-hidden="true">|</div>
