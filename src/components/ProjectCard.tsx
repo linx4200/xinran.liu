@@ -42,9 +42,9 @@ export const ProjectCard = (props: Props) => {
         aria-label={`${title} project preview with vibrant gradient colors`}
         className="w-full aspect-square rounded-md overflow-hidden bg-[linear-gradient(135deg,#ff7e5f_0%,#feb47b_40%,#6dd5ed_100%)] dark:bg-[linear-gradient(135deg,#5e2d21_0%,#5e402b_40%,#204e5e_100%)]"
       />
-      <div className="mt-5 text-left">
-        <h3 id={titleId} className="text-base font-semibold mb-1" dev-mode="tailwind">{title}</h3>
-        {desc && <p id={descriptionId} className="text-base/normal text-text-muted" dev-mode="tailwind">{desc}</p>}
+      <div className="mt-5 text-left text-base">
+        <h3 id={titleId} className="font-semibold mb-1" dev-mode="tailwind">{title}</h3>
+        {desc && <p id={descriptionId} className="text-text-muted leading-relaxed" dev-mode="tailwind">{desc}</p>}
       </div>
       {tags && <div className="flex flex-wrap gap-2 mt-5">
         {tags.map(tag => (

@@ -2,11 +2,11 @@ const Footer = () => {
   const year = (new Date()).getFullYear();
   return (
     <footer className="
-      w-full mt-20
+      w-full mt-10 lg:mt-20 py-4
       border-t border-zinc-200/70 dark:border-zinc-800/80
-      sm:flex-row"
+      text-center lg:text-left"
     >
-      <p className="text-xs text-text-muted/50 my-4">
+      <p className="text-xs text-text-muted/50">
         © {year} Xinran Liu. Built with Next.js, React, Tailwind CSS & <span className="text-base">♥</span>.
       </p>
     </footer>
