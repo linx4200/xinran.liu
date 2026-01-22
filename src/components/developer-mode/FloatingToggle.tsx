@@ -41,7 +41,7 @@ export const FloatingToggle = () => {
 
   // todo: responsive design: 最宽的时候放在内容的右边，而不是靠屏幕右边
   return (
-    <div className="fixed right-5 bottom-5">
+    <div className="hidden lg:block fixed right-5 bottom-5">
       <button
         type="button"
         className="

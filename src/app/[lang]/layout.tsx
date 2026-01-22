@@ -56,8 +56,8 @@ export default async function RootLayout({
 
         <Footer />
 
-        {/* <DeveloperModeFloatingToggle />
-        <DeveloperModePopUpInfo /> */}
+        <DeveloperModeFloatingToggle />
+        <DeveloperModePopUpInfo />
       </body>
     </html>
   );
