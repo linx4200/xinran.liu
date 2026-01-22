@@ -14,7 +14,9 @@ const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: strin
     : type === 'normal'
       ? 'hover:border-stone-400 dark:hover:border-stone-500 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-100 dark:hover:bg-stone-700'
       : 'hover:bg-primary/90';
-  const sharedClassName = `inline-flex min-w-[10rem] justify-center px-5 py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out ${variantClassName} ${hoverClassName}`;
+  /* Responsive button: full width on mobile, auto on desktop */
+  const responsiveClassName = 'w-full md:w-auto';
+  const sharedClassName = `inline-flex justify-center px-5 py-3 md:py-2 rounded-full border text-sm font-medium tracking-wide transition-all duration-200 ease-out ${variantClassName} ${hoverClassName} ${responsiveClassName}`;
 
   if (isDisabled) {
     return (
@@ -59,18 +61,30 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
     };
 
   return (
-    <>
-      <section className="flex justify-between mt-20" aria-labelledby="contact-hero-heading" dev-mode="tailwind">
-        <div>
-          <h1 id="contact-hero-heading" className="text-5xl font-bold mb-5" dev-mode="tailwind">{dict.contact.hero.title}</h1>
+    <div className="px-5 lg:px-0">
+      <section
+        className="
+          flex flex-col-reverse md:flex-row items-center md:justify-between md:items-start gap-10
+          mt-10 md:mt-20"
+        aria-labelledby="contact-hero-heading"
+        dev-mode="tailwind"
+      >
+        <div className="text-center md:text-left w-full">
+          <h1 id="contact-hero-heading" className="text-3xl md:text-5xl font-bold mb-5 leading-tight" dev-mode="tailwind">{dict.contact.hero.title}</h1>
           <p className="text-text-muted" dev-mode="tailwind">{dict.contact.hero.location}</p>
-          <p className="text-2xl mt-10" role="status" aria-live="polite" dev-mode="tailwind">
-            <span className={`size-4 inline-block rounded-xl mr-4 ${status.indicatorClass}`} aria-hidden="true" />
+          <p className="text-lg md:text-2xl mt-6 md:mt-10 flex items-center justify-center md:justify-start" role="status" aria-live="polite" dev-mode="tailwind">
+            <span className={`size-3 md:size-4 inline-block rounded-full mr-3 ${status.indicatorClass}`} aria-hidden="true" />
             {status.summary}
           </p>
         </div>
-        <div className="relative">
-          <Image className='rounded-[140px]' src={profile} alt="Portrait of Xinran Liu" />
+        <div className="relative w-[60%] md:w-auto">
+          <Image
+            width={280}
+            height={280}
+            className='w-full h-auto rounded-full aspect-square object-cover'
+            src={profile}
+            alt="Portrait of Xinran Liu"
+          />
           <a href='https://www.instagram.com/xinranwhatever' target='_blank' rel="noreferrer noopener" aria-label="Visit Xinran Liu on Instagram" className="
             absolute right-0 bottom-0 w-[60px] h-[60px] pl-[7.5px] pr-[7.5px] pt-[3.75px] pb-[3.75px]
             rounded-[30%] bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]
@@ -80,48 +94,53 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
         </div>
       </section>
 
-      <section className="mt-20" aria-labelledby="professional-background-heading">
-        <h2 id="professional-background-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.professionalBackground}</h2>
-        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
+      <section className="mt-10 md:mt-20" aria-labelledby="professional-background-heading">
+        <h2 id="professional-background-heading" className="text-xl md:text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.professionalBackground}</h2>
+
+        <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.linkedin.title}</h3>
-            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.linkedin.description}</p>
+            <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.linkedin.title}</h3>
+            <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.linkedin.description}</p>
           </div>
           <CTAButton text={dict.contact.links.linkedin.button} />
         </div>
-        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
+
+        <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.github.title}</h3>
-            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.github.description}</p>
+            <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.github.title}</h3>
+            <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.github.description}</p>
           </div>
           <CTAButton text={dict.contact.links.github.button} link="https://github.com/linx4200" />
         </div>
       </section>
 
-      <section className="mt-20" aria-labelledby="hire-contact-heading">
-        <h2 id="hire-contact-heading" className="text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.hireOrContact}</h2>
-        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
+      <section className="mt-10 md:mt-20 mb-20 md:mb-0" aria-labelledby="hire-contact-heading">
+        <h2 id="hire-contact-heading" className="text-xl md:text-2xl pb-5 border-b border-border border-solid font-bold">{dict.contact.sections.hireOrContact}</h2>
+
+        <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.upwork.title}</h3>
-            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.upwork.description}</p>
+            <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.upwork.title}</h3>
+            <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.upwork.description}</p>
           </div>
           <CTAButton text={dict.contact.links.upwork.button} type="primary" />
         </div>
-        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
+
+        <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.fiverr.title}</h3>
-            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.fiverr.description}</p>
+            <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.fiverr.title}</h3>
+            <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.fiverr.description}</p>
           </div>
           <CTAButton text={dict.contact.links.fiverr.button} type="primary" />
         </div>
-        <div className="flex justify-between mt-5 items-center" dev-mode="tailwind">
+
+        <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
           <div>
-            <h3 className="font-bold mb-2" dev-mode="tailwind">{dict.contact.links.email.title}</h3>
-            <p className="text-text-muted" dev-mode="tailwind">{dict.contact.links.email.description}</p>
+            <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.email.title}</h3>
+            <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.email.description}</p>
           </div>
           <CTAButton text={dict.contact.links.email.button} />
         </div>
       </section>
-    </>
+    </div>
   );
 }
