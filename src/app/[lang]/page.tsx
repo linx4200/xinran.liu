@@ -13,14 +13,14 @@ export default async function Home({ params }: PageProps<'/[lang]'>) {
     <>
       <section className="w-full mt-20 text-center" aria-labelledby="hero-heading">
         <h1 id="hero-heading" className="text-3xl md:text-5xl font-bold pb-1 mb-5 dark:text-primary" dev-mode="tailwind"><SayHi name={dict.home.hero.greeting} />.</h1>
-        <p className="text-base md:text-lg text-text-muted" dev-mode="tailwind">{dict.home.hero.description.split(' ').map((word: string, i: number) => {
+        <p className="text-base md:text-lg text-text-muted px-5 lg:px-0" dev-mode="tailwind">{dict.home.hero.description.split(' ').map((word: string, i: number) => {
           if (i === 7) return <span key={i}>{word} <br /></span>
           return word + ' '
         })}</p>
         <DevModeToggle />
       </section>
 
-      <section className="w-full mt-10 lg:mt-20" aria-labelledby="selected-projects-heading">
+      <section className="w-full mt-20" aria-labelledby="selected-projects-heading">
         <h2 id="selected-projects-heading" className="pl-4 lg:pl-0 text-xl md:text-2xl font-bold mb-5 md:text-center" dev-mode="tailwind"><Link href="/projects">{dict.home.sections.selectedProjects}</Link></h2>
         <SelectedProjectsList lang={lang} />
       </section>
