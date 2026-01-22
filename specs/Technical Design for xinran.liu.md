@@ -239,13 +239,11 @@ https://nextjs.org/docs/app/getting-started/layouts-and-pages#creating-a-nested-
 
 参考：https://tailwindcss.com/docs/responsive-design
 
-// todo: 因为 tailwind 是 mobile first 的原则，因此默认的样式应该是 for 小屏幕，然后通过 prefix 来定义大屏幕的样式。
-
 布局适配：
 
 1. 头部 logo 居中并取消动画；导航栏放置左侧，收起为汉堡菜单；右侧保留 dark mode 和 语言切换 icon。
 2. Hero Section 保持居中布局。
-3. Developer Mode 入口取消，只保留提示“需要切换到电脑端进行操作”。
+3. Developer Mode 入口取消。
 4. 标题改为居左显示，卡片垂直排列，一行一个卡片。
 5. Contact Page 的 HeroSection 保持居中布局; 头像： 缩小比例（约为屏幕宽度的 50%-60%），置于顶部居中; "Experienced Web Developer" 居中对齐，字体大小调至 28px-32px; 状态： "Available for Freelance Work" 紧随其后，绿点与文字居中对齐。
 6. Contact Page 的 专业背景与联系板块 (List Sections) 改为:

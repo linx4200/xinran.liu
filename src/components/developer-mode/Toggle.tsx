@@ -29,14 +29,14 @@ export const DevModeToggle = () => {
   return (
     <div className={`${isEnabled ? '' : 'pb-16'}`} data-dev-mode-react-name="DevModeToggle">
       <div className="mt-6 flex items-center justify-center gap-3" dev-mode="tailwind">
-        <span className="font-bold">👀&nbsp;&nbsp;&nbsp;Curious how this site is built?</span>
+        <span className="hidden lg:inline font-bold">👀&nbsp;&nbsp;&nbsp;Curious how this site is built?</span>
         <button
           type="button"
           role="switch"
           aria-label="Toggle developer mode"
           aria-checked={isEnabled}
           onClick={handleToggle}
-          className={`inline-flex h-6 w-10 items-center rounded-full cursor-pointer border transition-colors duration-150 ${isEnabled ? 'bg-primary border-primary' : 'bg-stone-200 border-stone-300 dark:bg-stone-700 dark:border-stone-600'}`}
+          className={`hidden lg:inline-flex h-6 w-10 items-center rounded-full cursor-pointer border transition-colors duration-150 ${isEnabled ? 'bg-primary border-primary' : 'bg-stone-200 border-stone-300 dark:bg-stone-700 dark:border-stone-600'}`}
         >
           <span className="sr-only">Developer mode</span>
           <span
@@ -45,6 +45,7 @@ export const DevModeToggle = () => {
           </span>
         </button>
       </div>
+
       {isEnabled && (<div className="mt-6 h-10">
         <div
           className="inline-flex overflow-hidden rounded-full border border-stone-100 bg-stone-100 dark:border-stone-800 dark:bg-stone-800"

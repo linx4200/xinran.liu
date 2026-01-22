@@ -45,7 +45,7 @@ export default async function RootLayout({
   return (
     <html lang={displayLang}>
       <body
-        className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased w-5xl mx-auto`}
+        className={`${geistSans.variable} ${geistSans.className} ${geistMono.variable} antialiased lg:w-5xl mx-auto`}
       >
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <Nav dict={dict} />
@@ -53,10 +53,11 @@ export default async function RootLayout({
         <main id="main-content" className="w-full min-h-[calc(100vh_-_var(--spacing)*30)]" role="main">
           {children}
         </main>
+
         <Footer />
 
-        <DeveloperModeFloatingToggle />
-        <DeveloperModePopUpInfo />
+        {/* <DeveloperModeFloatingToggle />
+        <DeveloperModePopUpInfo /> */}
       </body>
     </html>
   );
