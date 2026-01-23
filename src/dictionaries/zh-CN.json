@@ -28,7 +28,7 @@
       "free": "空闲",
       "busy": "忙碌",
       "available": "可接受自由职业委托",
-      "booked": "当前已排期"
+      "booked": "当前已排期", "unknown": "状态未知", "nextAvailable": "{n} 天后有空"
     },
     "sections": {
       "professionalBackground": "专业背景",

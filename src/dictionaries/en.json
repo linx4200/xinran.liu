@@ -28,7 +28,7 @@
       "free": "Free",
       "busy": "Busy",
       "available": "Available for Freelance Work",
-      "booked": "Currently Booked"
+      "booked": "Currently Booked", "unknown": "Status Unknown", "nextAvailable": "Next available in {n} days"
     },
     "sections": {
       "professionalBackground": "Professional Background",

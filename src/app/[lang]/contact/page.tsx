@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { getDictionary } from '@/dictionaries';
 
+import type { Response } from '@/app/api/google-calendar/route';
+
 const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: string, type?: 'primary' | 'normal' }) => {
   const isDisabled = !link;
   const variantClassName = type === 'normal'
@@ -39,26 +41,53 @@ const CTAButton = ({ text, link, type = 'normal' }: { text: string, link?: strin
 };
 
 export default async function Page({ params }: PageProps<'/[lang]'>) {
-  // todo: dynamically change the status
-  const availability: 'free' | 'busy' = 'free';
+  let availability: 'free' | 'busy' | 'unknown' = 'unknown';
+  let freeInDays = 0;
 
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  // todo: 添加下一个 available 的时间，跳转到 google calendar 
-  const status = availability === 'free'
-    ? {
+  try {
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/google-calendar`, {
+      next: {
+        revalidate: 60 * 60 * 12,
+      },
+    });
+    const data: Response = await resp.json();
+    availability = data.data?.availability || 'unknown';
+    freeInDays = data.data?.freeInDays || 0;
+  } catch (error) {
+    console.error(error);
+  }
+
+  let status = {
+    indicatorClass: 'bg-gray-400',
+    label: dict.contact.status.unknown,
+    labelClass: 'text-gray-600',
+    summary: dict.contact.status.unknown,
+  };
+
+  if (availability === 'free') {
+    status = {
       indicatorClass: 'bg-emerald-500',
       label: dict.contact.status.free,
       labelClass: 'text-emerald-600',
       summary: dict.contact.status.available,
+    };
+  } else if (availability === 'busy') {
+    let summary = dict.contact.status.booked;
+    if (freeInDays > 0) {
+      summary = `${summary}. ${dict.contact.status.nextAvailable.replace('{n}', freeInDays.toString())}`;
     }
-    : {
+    status = {
       indicatorClass: 'bg-red-500',
       label: dict.contact.status.busy,
       labelClass: 'text-red-600',
-      summary: dict.contact.status.booked,
+      summary: summary,
     };
+  }
+
+  const calendarUrl = `https://calendar.google.com/calendar/u/0?cid=${process.env.GOOGLE_CALENDAR_ID}`;
 
   return (
     <div className="px-5 lg:px-0">
@@ -72,10 +101,22 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
         <div className="text-center md:text-left w-full">
           <h1 id="contact-hero-heading" className="text-3xl md:text-5xl font-bold mb-5 leading-tight" dev-mode="tailwind">{dict.contact.hero.title}</h1>
           <p className="text-text-muted" dev-mode="tailwind">{dict.contact.hero.location}</p>
-          <p className="text-lg md:text-2xl mt-6 md:mt-10 flex items-center justify-center md:justify-start" role="status" aria-live="polite" dev-mode="tailwind">
-            <span className={`size-3 md:size-4 inline-block rounded-full mr-3 ${status.indicatorClass}`} aria-hidden="true" />
-            {status.summary}
-          </p>
+          {availability !== 'unknown' && <a
+            href={calendarUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="
+              text-lg md:text-2xl
+              w-fit mt-6 md:mt-10 mx-auto md:mx-0
+              flex items-center justify-center md:justify-start
+              hover:opacity-80 transition-opacity"
+            role="status"
+            aria-live="polite"
+            dev-mode="tailwind"
+          >
+            <span className={`hidden lg:inline-block size-3 md:size-4 rounded-full mr-3 ${status.indicatorClass}`} aria-hidden="true" />
+            <span className={status.labelClass}>{status.summary}</span>
+          </a>}
         </div>
         <div className="relative w-[60%] md:w-auto">
           <Image
