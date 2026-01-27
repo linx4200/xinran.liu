@@ -5,7 +5,7 @@
 - [Next.js](https://nextjs.org/): 因为是个人网站的属性，重前端轻后端，重信息展示，且 SEO 非常重要，因此服务器渲染技术十分合适，因此选用 Next.js 框架。
 - Tailwind CSS: 适合样式不复杂，轻量化快速开发的网站。
 - React
-- Zustand: todo: why zustand? 
+- Zustand: 简单高效的状态管理库。
 
 ## 概要设计
 
@@ -261,9 +261,6 @@ Contact Page 和 Available Time 功能通过查询个人 Google Calendar 的空�
 
 参考 https://developers.google.com/workspace/calendar/api/quickstart/nodejs 进行实现。
 
-// todo: 注意 credential 文件不能上传到 github
-// todo: 创建公开日历（只允许查看时间，不允许看具体内容，最好具体的项目在子 calendar 中, 用于分享给客户。 然后这里查询的是一个 calendar folder 之类的概念）
-
 ### SEO
 
 1. 静态元数据 (首页和 Contact Page)
@@ -283,8 +280,6 @@ https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#gene
 
 https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#static-robotstxt
 
-
-todo: Google Search Console：上线后第一件事，就是去 Search Console 提交你的 sitemap.xml，主动告知 Google 你的网站存在。
 
 5. 加入 JSON-LD
 

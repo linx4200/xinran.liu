@@ -8,6 +8,7 @@ export interface LocalizedProject {
   tags?: string[];
   site?: string;
   github?: string;
+  image?: string;
 }
 
 export const getAllProjects = (lang: string): LocalizedProject[] => {
@@ -20,6 +21,6 @@ export const getAllProjects = (lang: string): LocalizedProject[] => {
 };
 
 export const getSelectedProjects = (lang: string): LocalizedProject[] => {
-  const resolvedLang = resolveLocale(lang)
+  const resolvedLang = resolveLocale(lang);
   return getAllProjects(resolvedLang).filter((project) => project.selected);
 };

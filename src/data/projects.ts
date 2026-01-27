@@ -1,5 +1,6 @@
 import type { LangCode } from '@/dictionaries';
 
+
 export type Project = {
   selected?: boolean;
   title: { [key in LangCode]: string };
@@ -7,6 +8,7 @@ export type Project = {
   tags?: string[];
   site?: string;
   github?: string;
+  image?: string;
 };
 
 export const projects: Project[] = [
@@ -18,6 +20,7 @@ export const projects: Project[] = [
       zh: '一个现代化的 Vue 颜色选择器集合 —— 快速、无障碍且易于使用。',
     },
     tags: ['Vue', 'TypeScript', 'Vite'],
+    image: '/images/vuecolor-1.png',
     site: 'https://linx4200.github.io/vue-color/',
     github: 'https://github.com/linx4200/vue-color',
   },
@@ -28,6 +31,7 @@ export const projects: Project[] = [
       en: 'AfterZzz is a minimalist smart alarm that wakes you up after you actually fall asleep.',
       zh: 'AfterZzz 是一款极简智能闹钟，能在你真正入睡后才唤醒你。',
     },
+    image: '/images/afterzzz-1.png',
     tags: ['React Native', 'TypeScript'],
     github: 'https://github.com/linx4200/AfterZzz-Alarm',
   },
@@ -42,6 +46,7 @@ export const projects: Project[] = [
       zh: '设计并开发了一个反映我作为专业独立 Web 开发者工作和身份的个人网站。',
     },
     tags: ['React', 'Tailwind', 'Next.js'],
+    image: '/images/personal-website-2.png',
     github: 'https://github.com/linx4200/xinran.liu',
   },
   {

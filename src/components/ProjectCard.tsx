@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Card } from '@/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -9,11 +10,12 @@ type Props = {
   tags?: string[],
   site?: string,
   github?: string,
-  role?: string
+  role?: string,
+  image?: string
 }
 
 export const ProjectCard = (props: Props) => {
-  const { title, desc, tags, site, github, role } = props;
+  const { title, desc, tags, site, github, role, image } = props;
   const safeTitleSlug = title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -36,12 +38,12 @@ export const ProjectCard = (props: Props) => {
         bg-[radial-gradient(circle_at_20%_20%,rgba(0,0,0,0.05),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(0,0,0,0.04),transparent_30%)]
         dark:bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.05),transparent_30%)]"
       />
-      {/* todo: replace with real image */}
-      <div
+      {image && <Image src={image} alt={title} className="w-full aspect-square" width={500} height={500} />}
+      {!image && <div
         role="img"
         aria-label={`${title} project preview with vibrant gradient colors`}
         className="w-full aspect-square rounded-md overflow-hidden bg-[linear-gradient(135deg,#ff7e5f_0%,#feb47b_40%,#6dd5ed_100%)] dark:bg-[linear-gradient(135deg,#5e2d21_0%,#5e402b_40%,#204e5e_100%)]"
-      />
+      />}
       <div className="mt-5 text-left text-base">
         <h3 id={titleId} className="font-semibold mb-1" dev-mode="tailwind">{title}</h3>
         {desc && <p id={descriptionId} className="text-text-muted leading-relaxed" dev-mode="tailwind">{desc}</p>}
