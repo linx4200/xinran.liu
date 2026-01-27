@@ -15,6 +15,7 @@ export const SayHi = ({ name }: Props) => {
         transition
         group-hover:opacity-100
         group-hover:animate-wiggle"
+        aria-hidden="true"
       >👋</span>
     </span>
   )

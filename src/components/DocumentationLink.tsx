@@ -9,7 +9,7 @@ export const DocumentationLink = () => {
       target="_blank"
       rel="noreferrer noopener"
       className="rounded-full p-2 hover:bg-surface-strong cursor-pointer flex items-center justify-center text-stone-900 dark:text-stone-300"
-      aria-label="Documentation"
+      aria-label="Documentation (opens in a new tab)"
     >
       <FontAwesomeIcon icon={faBook} size="lg" />
     </a>

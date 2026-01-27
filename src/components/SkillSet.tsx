@@ -21,7 +21,6 @@ export const SkillSet = (props: LocalizedSkillSet) => {
     <li
       className="flex gap-3 not-last:mb-5 items-center group relative"
       key={skill.name}
-      aria-label={`${skill.name}, ${LEVEL_EXPLANATION[skill.level]} proficiency, level ${skill.level} of ${LEVEL_MAX}`}
       dev-mode="tailwind"
     >
       <span className="size-4 leading-4">

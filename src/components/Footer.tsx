@@ -7,7 +7,7 @@ const Footer = () => {
       text-center lg:text-left"
     >
       <p className="text-xs text-text-muted/50">
-        © {year} Xinran Liu. <span className="hidden min-[375px]:inline">Built with Next.js, React, Tailwind CSS & <span className="text-base">♥</span>.</span>
+        © {year} Xinran Liu. <span className="hidden min-[375px]:inline">Built with Next.js, React, Tailwind CSS & <span className="text-base" aria-label="Love">♥</span>.</span>
       </p>
     </footer>
   );
