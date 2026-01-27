@@ -17,11 +17,10 @@ export const DevModeToggle = () => {
       id: 'tailwind',
       label: 'Tailwind CSS',
     },
-    {
-      id: 'nextjs',
-      label: 'Next.js',
-    },
-    // todo: 删掉 nextjs 模式，改为，增加一句话提示（更多请查看 chrome 的开发者模式）或者能交互和按钮（点击打开 chrome 开发者模式）
+    // {
+    //   id: 'nextjs',
+    //   label: 'Next.js',
+    // },
   ] as const;
 
   const handleToggle = () => setIsEnabled();
