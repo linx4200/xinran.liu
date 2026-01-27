@@ -6,6 +6,7 @@ import { useParams, usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { LangSwitch } from '@/components/LangSwitch';
 import { SayHi } from '@/components/SayHi';
+import { DocumentationLink } from '@/components/DocumentationLink';
 
 import type { LangCode, Dictionary } from '@/dictionaries';
 
@@ -52,7 +53,7 @@ const Nav = ({ dict }: { dict: Dictionary }) => {
       className="
         w-full h-16 relative
         pr-2 lg:pr-0
-        flex gap-5 items-center space-between lg:justify-end
+        flex items-center justify-between lg:justify-end lg:gap-5
         text-base/15"
       aria-label="Primary"
       dev-mode="tailwind"
@@ -118,7 +119,7 @@ const Nav = ({ dict }: { dict: Dictionary }) => {
 
       <DarkModeSwitch />
       <LangSwitch />
-      {/* todo: Github link， and documentation link */}
+      <DocumentationLink />
     </nav>
   );
 };
