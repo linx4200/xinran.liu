@@ -21,8 +21,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Lan
   };
 }
 
-
-// todo: 这个字体的 variable 一定要是这样的吗
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
