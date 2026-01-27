@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Xinran Liu | Independent Web Developer",
+    "description": "Xinran Liu is an independent web developer specializing in building fast, reliable, and scalable web applications using React, Vue, and Next.js. Available for freelance collaborations."
+  },
   "nav": {
     "home": "Home",
     "projects": "Projects",
@@ -28,7 +32,9 @@
       "free": "Free",
       "busy": "Busy",
       "available": "Available for Freelance Work",
-      "booked": "Currently Booked", "unknown": "Status Unknown", "nextAvailable": "Next available in {n} days"
+      "booked": "Currently Booked",
+      "unknown": "Status Unknown",
+      "nextAvailable": "Next available in {n} days"
     },
     "sections": {
       "professionalBackground": "Professional Background",

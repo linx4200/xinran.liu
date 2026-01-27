@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Xinran Liu | 独立 Web 开发者",
+    "description": "Xinran Liu 是一位独立 Web 开发者，擅长使用 React、Vue 和 Next.js 构建快速、可靠且可扩展的 Web 应用程序。可接受自由职业合作。"
+  },
   "nav": {
     "home": "首页",
     "projects": "项目",
@@ -28,7 +32,9 @@
       "free": "空闲",
       "busy": "忙碌",
       "available": "可接受自由职业委托",
-      "booked": "当前已排期", "unknown": "状态未知", "nextAvailable": "{n} 天后有空"
+      "booked": "当前已排期",
+      "unknown": "状态未知",
+      "nextAvailable": "{n} 天后有空"
     },
     "sections": {
       "professionalBackground": "专业背景",

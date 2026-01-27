@@ -9,10 +9,17 @@ import "@/styles/globals.css";
 import { getDictionary, type LangCode } from '@/dictionaries';
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Xinran Liu | Independent Web Developer",
-  description: "Xinran Liu is an independent web developer specializing in building fast, reliable, and scalable web applications using React, Vue, and Next.js. Available for freelance collaborations.",
-};
+import { JsonLd } from '@/components/JsonLd';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: LangCode }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
+  return {
+    title: dict.metadata.title,
+    description: dict.metadata.description,
+  };
+}
 
 
 // todo: 这个字体的 variable 一定要是这样的吗
@@ -58,6 +65,7 @@ export default async function RootLayout({
 
         <DeveloperModeFloatingToggle />
         <DeveloperModePopUpInfo />
+        <JsonLd />
       </body>
     </html>
   );
