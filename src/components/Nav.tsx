@@ -64,7 +64,7 @@ const Nav = ({ dict }: { dict: Dictionary }) => {
       {/* Mobile Menu Toggle */}
       <button
         type="button"
-        className="lg:hidden p-2"
+        className="lg:hidden p-2 text-text-muted"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle navigation menu"
         aria-expanded={isOpen}

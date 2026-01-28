@@ -53,12 +53,12 @@ export const ProjectCard = (props: Props) => {
           <span className="text-xs text-text-muted bg-surface-strong px-2 py-1 rounded-full" key={tag}>{tag}</span>
         ))}
       </div>}
-      {(site || github) && <div className="flex gap-4 mt-5 justify-end">
-        {site && <a target='_blank' rel="noreferrer noopener" href={site} className="size-4.5" aria-label={`Open ${title} live site`}>
-          <FontAwesomeIcon icon={faLink} color='var(--color-text-muted)' />
+      {(site || github) && <div className="flex gap-4 mt-5 justify-end text-text-muted">
+        {site && <a target='_blank' rel="noreferrer noopener" href={site} aria-label={`Open ${title} live site`}>
+          <FontAwesomeIcon icon={faLink} size='lg' />
         </a>}
-        {github && <a target='_blank' rel="noreferrer noopener" href={github} className="size-4.5" aria-label={`Open ${title} on GitHub`}>
-          <FontAwesomeIcon icon={faGithub} color='var(--color-text-muted)' />
+        {github && <a target='_blank' rel="noreferrer noopener" href={github} aria-label={`Open ${title} on GitHub`}>
+          <FontAwesomeIcon icon={faGithub} size='lg' />
         </a>}
       </div>}
     </Card>

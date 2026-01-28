@@ -30,8 +30,6 @@ export async function GET() {
     return Response.json({ error: 'Failed to fetch availability' });
   }
 
-  console.log(resp);
-
   // start 和 end 都是 UTC（世界标准时间）， 如 ‘2026-01-23T23:30:00Z’
   const busyIntervals = resp.busy.filter(
     (item): item is { start: string; end: string } =>
