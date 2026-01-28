@@ -93,7 +93,7 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
     <div className="px-5 lg:px-0">
       <section
         className="
-          flex flex-col-reverse md:flex-row items-center md:justify-between md:items-start gap-10
+          flex flex-col-reverse md:flex-row items-center md:justify-between md:items-start gap-5
           mt-10 md:mt-20"
         aria-labelledby="contact-hero-heading"
         dev-mode="tailwind"
@@ -118,7 +118,7 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
             <span className={status.labelClass}>{status.summary}</span>
           </a>}
         </div>
-        <div className="relative w-[60%] md:w-auto">
+        <div className="relative w-[60%] md:w-[280px] aspect-square">
           <Image
             width={280}
             height={280}
