@@ -1,15 +1,19 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { JsonLd } from '@/components/JsonLd';
+
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { FloatingToggle as DeveloperModeFloatingToggle } from '@/components/developer-mode/FloatingToggle';
 import { Info as DeveloperModePopUpInfo } from '@/components/developer-mode/Info';
+import { getDictionary, type LangCode } from '@/dictionaries';
+
+import { Geist, Geist_Mono } from 'next/font/google';
+
+import type { Metadata } from "next";
 
 import "@/styles/globals.css";
 
-import { getDictionary, type LangCode } from '@/dictionaries';
-import type { Metadata } from "next";
 
-import { JsonLd } from '@/components/JsonLd';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: LangCode }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -64,6 +68,7 @@ export default async function RootLayout({
         <DeveloperModeFloatingToggle />
         <DeveloperModePopUpInfo />
         <JsonLd />
+        <SpeedInsights />
       </body>
     </html>
   );
