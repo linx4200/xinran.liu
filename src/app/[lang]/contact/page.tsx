@@ -127,10 +127,10 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
             alt="Portrait of Xinran Liu"
           />
           <a href='https://www.instagram.com/xinranwhatever' target='_blank' rel="noreferrer noopener" aria-label="Visit Xinran Liu on Instagram" className="
-            absolute right-0 bottom-0 w-[60px] h-[60px] pl-[7.5px] pr-[7.5px] pt-[3.75px] pb-[3.75px]
+            absolute right-0 bottom-0 w-[60px] h-[60px] flex items-center justify-center
             rounded-[30%] bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]
           ">
-            <FontAwesomeIcon icon={faInstagram} color='white' />
+            <FontAwesomeIcon icon={faInstagram} color='white' size="3x" />
           </a>
         </div>
       </section>
@@ -163,7 +163,7 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
             <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.upwork.title}</h3>
             <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.upwork.description}</p>
           </div>
-          <CTAButton text={dict.contact.links.upwork.button} type="primary" />
+          <CTAButton text={dict.contact.links.upwork.button} link="https://www.upwork.com/freelancers/~01ac39294b49d6fc88?mp_source=share" type="primary" />
         </div>
 
         <div className="flex flex-col md:flex-row md:justify-between mt-5 md:items-center gap-3" dev-mode="tailwind">
@@ -179,7 +179,7 @@ export default async function Page({ params }: PageProps<'/[lang]'>) {
             <h3 className="font-semibold mb-1 md:mb-2 text-lg md:text-base" dev-mode="tailwind">{dict.contact.links.email.title}</h3>
             <p className="text-text-muted text-sm md:text-base" dev-mode="tailwind">{dict.contact.links.email.description}</p>
           </div>
-          <CTAButton text={dict.contact.links.email.button} />
+          <CTAButton text={dict.contact.links.email.button} link="mailto:liuxinran1008@gmail.com" type="primary" />
         </div>
       </section>
     </div>
